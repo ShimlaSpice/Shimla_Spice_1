@@ -4,14 +4,291 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Shimla Spice — Colourful, Interactive & Tasty</title>
-  <meta name="description" content="A playful, colourful, interactive site for Shimla Spice — Homemade goodness in every jar." />
+  <meta name="description" content="Shimla Spice — Homemade goodness in every jar. Single-page scrolling site." />
   <style>
-  /* Minimal CSS just to have the file */
-  body{font-family:sans-serif;}
+    :root{
+      --bg:#fff8ef; --ink:#1f2937; --muted:#6b7280;
+      --brand:#b91c1c; /* deep Himachali red */
+      --accent:#2f9e44; /* fresh green */
+      --card:#ffffff; --ring:#ffd9c9; --radius:16px; --shadow:0 10px 30px rgba(0,0,0,.10);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system,Segoe UI,Roboto,Helvetica,Arial; color:var(--ink); background:var(--bg);scroll-behavior:smooth}
+    img{max-width:100%;display:block}
+    a{color:inherit}
+    .container{max-width:1100px;margin:0 auto;padding:28px}
+    .card{background:var(--card);border:1px solid var(--ring);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:12px;font-weight:700;cursor:pointer}
+    .btn.primary{background:var(--brand);color:#fff}
+    .btn.ghost{background:#fff;border:1px solid #eee}
+
+    /* NAV */
+    header{position:sticky;top:0;z-index:60;background:linear-gradient(90deg, rgba(255,249,244,.96), rgba(255,249,244,.96));backdrop-filter:blur(6px);border-bottom:1px solid #ffeae6}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand-logo{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--brand),#ff7b7b);display:grid;place-items:center;color:white;font-weight:900}
+    nav.main a{margin-left:12px;font-weight:700;color:#374151}
+
+    /* HERO */
+    .hero{display:grid;grid-template-columns:1fr 480px;gap:24px;align-items:center;padding:36px 0}
+    .hero-card{padding:28px}
+    .tag{display:inline-block;background:rgba(251,230,227,.9);color:var(--brand);padding:6px 12px;border-radius:999px;font-weight:800;font-size:13px}
+    .title{font-size:clamp(28px,5vw,44px);line-height:1.03;margin:12px 0}
+    .lead{color:var(--muted);font-size:16px}
+    .hero-cta{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+    .sparkle-wrap{border-radius:16px;overflow:hidden}
+
+    /* FLOATY BLOBS */
+    .floaty{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.18}
+    .blob{position:absolute;border-radius:50%;filter:blur(44px);mix-blend-mode:multiply}
+    .b1{width:300px;height:300px;background:linear-gradient(135deg,var(--brand),#ff8a66);top:6%;left:4%}
+    .b2{width:260px;height:260px;background:linear-gradient(135deg,var(--accent),#7de18b);top:28%;right:6%}
+    .b3{width:320px;height:320px;background:linear-gradient(135deg,#ffd166,#ffb703);bottom:6%;left:12%}
+
+    /* SECTIONS */
+    section{padding:36px 0}
+    h2.section{font-size:26px;margin:0 0 12px 0}
+
+    /* PRODUCTS GRID */
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:10px}
+    .p-card{overflow:hidden;position:relative;border-radius:12px;transition:transform .25s, box-shadow .25s}
+    .p-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,0.12)}
+    .p-card figure{aspect-ratio:4/3;overflow:hidden;margin:0}
+    .p-body{padding:14px}
+    .chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+    .chip{background:#f3f4f6;padding:6px 10px;border-radius:999px;font-size:13px}
+    .product-actions{display:flex;gap:10px;margin-top:8px}
+
+    /* RECIPES */
+    .recipes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+
+    /* TESTIMONIALS */
+    .carousel{position:relative;overflow:hidden}
+    .slides{display:flex;transition:transform .6s}
+    .slide{min-width:100%;padding:20px}
+
+    /* CONTACT */
+    .contact .form{max-width:640px;margin-top:12px}
+    input,textarea{width:100%;padding:10px;border-radius:10px;border:1px solid #eee}
+
+    /* FOOTER */
+    footer{padding:24px 0;color:var(--muted);text-align:center}
+
+    /* SMALL */
+    @media (max-width:980px){.hero{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}} 
+    @media (max-width:640px){.cards{grid-template-columns:1fr}.nav{padding:8px 0}.brand-logo{width:40px;height:40px}}
+
+    /* ANIMATIONS: reveal on scroll */
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease}
+    .reveal.visible{opacity:1;transform:none}
+
+    /* small helpers */
+    .muted{color:var(--muted)}
   </style>
 </head>
 <body>
-<h1>Shimla Spice — Test Page</h1>
-<img src="assets/images/placeholder.png" alt="Placeholder Image">
+  <div class="floaty" aria-hidden>
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+  </div>
+
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-logo">🌶️</div>
+        <div>
+          <strong>Shimla Spice</strong><br><small class="muted">Jai Maa Kamaksha — Raksha & Kalyan</small>
+        </div>
+      </div>
+      <nav class="main">
+        <a href="#about">About</a>
+        <a href="#products">Products</a>
+        <a href="#recipes">Recipes</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" id="home">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-card card reveal">
+        <span class="tag">Homemade goodness in every jar</span>
+        <h1 class="title">Colourful, Interactive & Tasty — Shimla Spice</h1>
+        <p class="lead">Authentic Himachali pickles crafted in small batches. No preservatives — just real ingredients, sun, time and love.</p>
+        <div class="hero-cta">
+          <a class="btn primary" href="#products">Explore Pickles</a>
+          <a class="btn ghost" href="#contact">Contact Us</a>
+        </div>
+      </div>
+      <div class="sparkle-wrap card reveal" style="padding:0;overflow:hidden">
+        <img src="https://images.unsplash.com/photo-1526318472351-c75fcf070305?q=80&w=1200&auto=format&fit=crop" alt="Shimla jars"/>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="reveal">
+      <h2 class="section">Our Story</h2>
+      <div class="card" style="padding:18px">
+        <p>Shimla Spice began in our family kitchen in Himachal Pradesh. Inspired by Nanu’s recipes, we craft small-batch pickles — honest ingredients, hand-ground masalas and time-tested processes. Every jar carries home.</p>
+      </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section id="products" class="reveal">
+      <h2 class="section">Pickles & Chukhs — 12 Specialties</h2>
+      <div class="cards" id="productsGrid">
+        <!-- JS will populate 12 products -->
+      </div>
+    </section>
+
+    <!-- RECIPES -->
+    <section id="recipes" class="reveal">
+      <h2 class="section">Tap the Jar — Recipe Ideas</h2>
+      <div class="recipes" id="recipesGrid">
+        <!-- populated by JS -->
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews" class="reveal">
+      <h2 class="section">What People Say</h2>
+      <div class="carousel card">
+        <div class="slides" id="slides">
+          <div class="slide"><p class="t-quote">"Best mango pickle I've had since my nani's kitchen." — Asha</p></div>
+          <div class="slide"><p class="t-quote">"Chukh with rajma-chawal = heaven." — Rohit</p></div>
+          <div class="slide"><p class="t-quote">"Lal Bharwa is 🔥. Stuffed perfectly." — Sana</p></div>
+        </div>
+        <div class="dots" id="dots"></div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="reveal">
+      <h2 class="section">Contact & Wholesale</h2>
+      <div class="card" style="padding:18px">
+        <form id="contactForm">
+          <label>Name</label>
+          <input type="text" name="name" required />
+          <label>Email</label>
+          <input type="email" name="email" required />
+          <label>Message</label>
+          <textarea name="message" rows="4"></textarea>
+          <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap">
+            <button class="btn primary" type="submit">Send Message</button>
+            <a class="btn ghost" href="https://wa.me/?text=Hello%20Shimla%20Spice%21%20I%27m%20interested%20in%20your%20pickles" target="_blank">Message on WhatsApp</a>
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="container">
+    <div class="foot">
+      <div>
+        <strong>Shimla Spice</strong><br/><small class="muted">Jai Maa Kamaksha</small>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <a href="#home">Home</a><br/>
+        <a href="#products">Products</a><br/>
+        <a href="#contact">Contact</a>
+      </div>
+      <div>
+        <h4>Follow Us</h4>
+        <a href="#">Instagram</a><br/>
+        <a href="#">Facebook</a>
+      </div>
+    </div>
+    <div style="margin-top:16px;color:var(--muted);">&copy; 2025 Shimla Spice — All rights reserved</div>
+  </footer>
+
+  <script>
+    // PRODUCTS DATA
+    const products = [
+      {name:'Himachali Chukh',desc:'Fiery, tangy & aromatic — with a gentle hint of jaggery.'},
+      {name:'Aam (Mango Pickle)',desc:'Sweet & tangy mango pickle — army-style Mardana Achar.'},
+      {name:'Amla Pickle',desc:'Nutritious amla with zesty spices.'},
+      {name:'Green Chilly',desc:'Fresh & fiery green chilli pickle.'},
+      {name:'Green Chilly & Ginger',desc:'A spicy & gingery pairing.'},
+      {name:'Lemon Pickle',desc:'Tangy lemon burst.'},
+      {name:'Mountain Lemon (Gagal)',desc:'Unique Himachali lemon flavour.'},
+      {name:'Kachnar Pickle',desc:'Traditional kachnar petals in spice.'},
+      {name:'Bharwa Lal Mirch',desc:'Hand‑stuffed red chilies with roasted spices.'},
+      {name:'Bharwa Hari Mirch',desc:'Hand‑stuffed green chilies — mild to medium heat.'},
+      {name:'Lehsun (Garlic)',desc:'Garlic preserved with hand‑ground masala.'},
+      {name:'Mix Vegetable',desc:'Seasonal vegetables pickled with love.'}
+    ];
+
+    const productsGrid = document.getElementById('productsGrid');
+
+    products.forEach((p,idx)=>{
+      const el = document.createElement('article');
+      el.className = 'card p-card reveal';
+      el.innerHTML = `
+        <figure><img src="https://via.placeholder.com/800x600.png?text=${encodeURIComponent(p.name)}" alt="${p.name}"/></figure>
+        <div class="p-body">
+          <h3>${p.name}</h3>
+          <p class="muted">${p.desc}</p>
+          <div class="chips"><span class="chip">Small‑batch</span><span class="chip">Vegan</span><span class="chip">No preservatives</span></div>
+          <div class="product-actions"><a class="btn primary" href="https://www.amazon.in" target="_blank" rel="noopener">Buy on Amazon</a><button class="btn" onclick="openQuick(${idx})">Quick Recipe</button></div>
+        </div>
+      `;
+      productsGrid.appendChild(el);
+    });
+
+    // Simple quick recipe modal (lightweight)
+    function openQuick(i){
+      const r = products[i];
+      alert(r.name + '\n\nRecipe idea:\n' + (
+        i%3===0? 'Mix with warm mustard oil and serve with parathas.' :
+        i%3===1? 'Add a spoonful to dal tadka for tang.' :
+        'Mix into yogurt for a quick raita.'
+      ));
+    }
+
+    // RECIPES GRID
+    const recipes = [
+      'Mango chutney with curd & paratha',
+      'Chukh + mashed potato toast',
+      'Garlic pickle tadka in dal',
+      'Spiced lemon pickle salad dressing',
+      'Mix veg pickle stir-fry',
+      'Amla chutney on khichdi'
+    ];
+    const recipesGrid = document.getElementById('recipesGrid');
+    recipes.forEach((t)=>{
+      const el=document.createElement('div'); el.className='card jar reveal';
+      el.innerHTML = `<div style="padding:14px"><strong>${t}</strong><p class="muted">Click to reveal</p></div>`;
+      el.addEventListener('click',()=>{alert(t + '\n\nTip: Try with hot roti or paratha!')});
+      recipesGrid.appendChild(el);
+    });
+
+    // Simple carousel dots
+    const slides = document.getElementById('slides');
+    const dots = document.getElementById('dots');
+    const slideCount = slides.children.length;
+    for(let i=0;i<slideCount;i++){ const d=document.createElement('span'); d.className='dot'+(i===0?' active':''); d.addEventListener('click',()=>goTo(i)); dots.appendChild(d);} 
+    function goTo(n){ slides.style.transform = `translateX(-${n*100}%)`; Array.from(dots.children).forEach((el,idx)=>el.classList.toggle('active',idx===n)); }
+    let si=0; setInterval(()=>{ si=(si+1)%slideCount; goTo(si); },4500);
+
+    // CONTACT form basic handler
+    document.getElementById('contactForm').addEventListener('submit',function(e){ e.preventDefault(); alert('Thanks! We will get back to you soon.'); this.reset(); });
+
+    // IntersectionObserver for reveal on scroll
+    const io = new IntersectionObserver((entries)=>{ entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('visible'); } }); },{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // Smooth nav active highlight (optional)
+    const navLinks = document.querySelectorAll('nav.main a');
+    const sections = Array.from(navLinks).map(a=>document.querySelector(a.getAttribute('href')));
+    window.addEventListener('scroll',()=>{
+      const scrollPos = window.scrollY + 120;
+      sections.forEach((sec,idx)=>{ if(!sec) return; const top=sec.offsetTop; const bot=top+sec.offsetHeight; navLinks[idx].classList.toggle('active', scrollPos>=top && scrollPos<bot); });
+    });
+  </script>
 </body>
 </html>
