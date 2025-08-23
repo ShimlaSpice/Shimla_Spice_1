@@ -4,178 +4,140 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Shimla Spice</title>
-  <meta name="description" content="Shimla Spice — Homemade goodness in every jar." />
+  <meta name="description" content="Shimla Spice — Homemade goodness in every jar" />
   <style>
-    /* ===================== THEME & RESETS ===================== */
     :root{
-      --bg: #fff8ef;
-      --ink: #1f2937;
-      --muted:#6b7280;
-      --brand:#ec4c24;
-      --brand-2:#ffb703;
-      --brand-3:#34d399;
-      --brand-4:#8b5cf6;
-      --card:#ffffff;
-      --ring:#ffd9c9;
-      --radius:18px;
-      --shadow:0 10px 30px rgba(0,0,0,.10);
-      --shadow-soft:0 6px 16px rgba(0,0,0,.08);
+      --bg:#fff8ef; --ink:#1f2937; --muted:#6b7280;
+      --brand:#b91c1c; /* deep Himachali red */
+      --accent:#2f9e44; /* fresh green */
+      --card:#ffffff; --ring:#ffd9c9; --radius:16px; --shadow:0 10px 30px rgba(0,0,0,.10);
     }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; color:var(--ink); background:var(--bg)}
+    html,body{margin:0;padding:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system,Segoe UI,Roboto,Helvetica,Arial; color:var(--ink); background:var(--bg);scroll-behavior:smooth}
     img{max-width:100%;display:block}
-    a{color:inherit;text-decoration:none}
-    .container{max-width:1150px;margin-inline:auto;padding:24px}
-    .card{background:var(--card);border:1px solid var(--ring);border-radius:var(--radius);box-shadow:var(--shadow);}
-    .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:12px;font-weight:700;cursor:pointer;user-select:none;transition:.2s transform,.2s filter}
-    .btn:active{transform:translateY(1px)}
-    .btn.primary{background:var(--brand);color:white}
-    .btn.primary:hover{filter:brightness(1.05)}
-    .btn.ghost{background:white;border:1px solid #e5e7eb;color:#111827}
-    .btn.ghost:hover{background:#f9fafb}
-    .muted{color:var(--muted)}
+    a{color:inherit}
+    .container{max-width:1100px;margin:0 auto;padding:28px}
+    .card{background:var(--card);border:1px solid var(--ring);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:12px;font-weight:700;cursor:pointer}
+    .btn.primary{background:var(--brand);color:#fff}
+    .btn.ghost{background:#fff;border:1px solid #eee}
 
-    /* ===================== STICKY NAVBAR ===================== */
-    header{position:sticky;top:0;z-index:50;background:rgba(255,248,239,.95);backdrop-filter:blur(8px) saturate(1.2);border-bottom:1px solid #ffe9d9}
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:900}
-    .brand-logo{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center;color:white;box-shadow:var(--shadow-soft)}
-    .brand small{display:block;font-weight:700;color:var(--muted);font-size:11px;letter-spacing:.4px}
-    .menu{display:flex;gap:18px;align-items:center}
-    .menu a{padding:10px 12px;border-radius:10px;font-weight:700;color:#374151}
-    .menu a:hover{background:#fff}
-    .menu-toggle{display:none}
+    /* NAV */
+    header{position:sticky;top:0;z-index:60;background:linear-gradient(90deg, rgba(255,249,244,.96), rgba(255,249,244,.96));backdrop-filter:blur(6px);border-bottom:1px solid #ffeae6}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand-logo{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--brand),#ff7b7b);display:grid;place-items:center;color:white;font-weight:900}
+    nav.main a{margin-left:12px;font-weight:700;color:#374151}
 
-    /* ===================== FLOATY BACKGROUND ORNAMENTS ===================== */
-    .floaty{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.25}
-    .blob{position:absolute;width:220px;height:220px;border-radius:50%;filter:blur(40px);animation:float 12s ease-in-out infinite}
-    .b1{background:var(--brand);top:5%;left:6%}
-    .b2{background:var(--brand-2);top:20%;right:8%;animation-duration:15s}
-    .b3{background:var(--brand-3);bottom:8%;left:14%;animation-duration:18s}
-    .b4{background:var(--brand-4);bottom:10%;right:12%;animation-duration:20s}
-    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
-
-    /* ===================== HERO SECTION ===================== */
-    .hero{position:relative;z-index:1;display:grid;gap:26px;grid-template-columns:1.05fr .95fr;align-items:center}
+    /* HERO */
+    .hero{display:grid;grid-template-columns:1fr 480px;gap:24px;align-items:center;padding:36px 0}
     .hero-card{padding:28px}
-    .tag{display:inline-flex;align-items:center;gap:8px;background:#fff1e9;border:1px solid #ffd7c7;color:#7a2a13;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.6px}
-    .title{font-size:clamp(28px,5vw,48px);line-height:1.05;margin:12px 0 8px 0}
-    .sub{font-size:18px;color:var(--muted)}
-    .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
-    .sparkle-wrap{position:relative}
-    .sparkle{position:absolute;inset:12px;border-radius:var(--radius);background:repeating-conic-gradient(from 0deg, rgba(255,255,255,.2) 0 20deg, rgba(255,255,255,0) 20deg 40deg);animation:spin 18s linear infinite}
-    @keyframes spin{to{transform:rotate(1turn)}}
+    .tag{display:inline-block;background:rgba(251,230,227,.9);color:var(--brand);padding:6px 12px;border-radius:999px;font-weight:800;font-size:13px}
+    .title{font-size:clamp(28px,5vw,44px);line-height:1.03;margin:12px 0}
+    .lead{color:var(--muted);font-size:16px}
+    .hero-cta{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+    .sparkle-wrap{border-radius:16px;overflow:hidden}
 
-    /* ===================== TRIPLE PRODUCT CARDS ===================== */
-    section{margin-top:42px}
-    h2.section{font-size:clamp(24px,3.6vw,32px);margin:0 0 8px 0}
-    .cards{display:grid;gap:18px;grid-template-columns:repeat(3,1fr)}
-    .p-card{overflow:hidden;position:relative}
-    .p-card figure{aspect-ratio:4/3;overflow:hidden}
-    .p-card figure img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-    .p-card:hover figure img{transform:scale(1.07)}
-    .p-body{padding:16px}
-    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-    .chip{font-size:12px;background:#f3f4f6;padding:6px 10px;border-radius:999px;display:inline-block}
+    /* FLOATY BLOBS */
+    .floaty{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.18}
+    .blob{position:absolute;border-radius:50%;filter:blur(44px);mix-blend-mode:multiply}
+    .b1{width:300px;height:300px;background:linear-gradient(135deg,var(--brand),#ff8a66);top:6%;left:4%}
+    .b2{width:260px;height:260px;background:linear-gradient(135deg,var(--accent),#7de18b);top:28%;right:6%}
+    .b3{width:320px;height:320px;background:linear-gradient(135deg,#ffd166,#ffb703);bottom:6%;left:12%}
 
-    /* ===================== INTERACTIVE RECIPES ===================== */
-    .recipes{display:grid;gap:18px;grid-template-columns:repeat(3,1fr)}
-    .jar{padding:18px;text-align:center;cursor:pointer;transition:transform .15s}
-    .jar:active{transform:translateY(1px)}
-    .jar svg{width:70px;height:70px}
-    .reveal{display:none;margin-top:10px;color:var(--muted)}
-    .jar.active .reveal{display:block}
+    /* SECTIONS */
+    section{padding:36px 0}
+    h2.section{font-size:26px;margin:0 0 12px 0}
 
-    /* ===================== TESTIMONIALS CAROUSEL ===================== */
+    /* PRODUCTS GRID */
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:10px}
+    .p-card{overflow:hidden;position:relative;border-radius:12px;transition:transform .25s, box-shadow .25s}
+    .p-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,0.12)}
+    .p-card figure{aspect-ratio:4/3;overflow:hidden;margin:0}
+    .p-body{padding:14px}
+    .chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+    .chip{background:#f3f4f6;padding:6px 10px;border-radius:999px;font-size:13px}
+    .product-actions{display:flex;gap:10px;margin-top:8px}
+
+    /* RECIPES */
+    .recipes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+
+    /* TESTIMONIALS */
     .carousel{position:relative;overflow:hidden}
-    .slides{display:flex;transition:transform .5s}
-    .slide{min-width:100%;padding:22px}
-    .t-quote{font-size:20px;line-height:1.6}
-    .dots{display:flex;gap:8px;justify-content:center;margin-top:10px}
-    .dot{width:10px;height:10px;border-radius:999px;background:#e5e7eb}
-    .dot.active{background:var(--brand)}
+    .slides{display:flex;transition:transform .6s}
+    .slide{min-width:100%;padding:20px}
 
-    /* ===================== CONTACT ===================== */
-    form label{font-weight:700}
-    input,textarea{width:100%;padding:12px;border:1px solid #e5e7eb;border-radius:12px;margin-top:6px}
+    /* CONTACT */
+    .contact .form{max-width:640px;margin-top:12px}
+    input,textarea{width:100%;padding:10px;border-radius:10px;border:1px solid #eee}
 
-    /* ===================== FOOTER ===================== */
-    footer{margin-top:64px;border-top:1px solid #ffe9d9}
-    .foot{display:grid;gap:26px;grid-template-columns:2fr 1fr 1fr}
-    .copyright{color:var(--muted);font-size:14px;margin-top:10px}
+    /* FOOTER */
+    footer{padding:24px 0;color:var(--muted);text-align:center}
 
-    /* ===================== RESPONSIVE ===================== */
-    @media (max-width:980px){
-      .hero{grid-template-columns:1fr}
-      .cards{grid-template-columns:1fr 1fr}
-      .recipes{grid-template-columns:1fr 1fr}
-    }
-    @media (max-width:640px){
-      .menu{display:none}
-      .menu-toggle{display:inline-flex}
-      .cards,.recipes{grid-template-columns:1fr}
-      .foot{grid-template-columns:1fr}
-    }
+    /* SMALL */
+    @media (max-width:980px){.hero{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}} 
+    @media (max-width:640px){.cards{grid-template-columns:1fr}.nav{padding:8px 0}.brand-logo{width:40px;height:40px}}
+
+    /* ANIMATIONS: reveal on scroll */
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease}
+    .reveal.visible{opacity:1;transform:none}
+
+    /* small helpers */
+    .muted{color:var(--muted)}
   </style>
 </head>
 <body>
-  <!-- FLOATY ORNAMENTS -->
-  <div class="floaty">
+  <div class="floaty" aria-hidden>
     <div class="blob b1"></div>
     <div class="blob b2"></div>
     <div class="blob b3"></div>
-    <div class="blob b4"></div>
   </div>
 
-  <!-- NAVBAR -->
   <header>
     <div class="container nav">
-      <a class="brand" href="#home">
-        <span class="brand-logo">🌶️</span>
-        <span>
-          Shimla Spice
-          <small>Jai Maa Kamaksha — Raksha krna & Kalyan karna</small>
-        </span>
-      </a>
-      <nav class="menu">
+      <div class="brand">
+        <div class="brand-logo"><img src="assets/SS_logo.png alt="Shimla Spice Logo"></div>
+        <div>
+          <strong>Shimla Spice</strong><br><small class="muted">Homemade Goodness in Every Jar</small>
+        </div>
+      </div>
+      <nav class="main">
         <a href="#about">About</a>
-        <a href="#products">Products</a>
+        <a href="#products">Pickles</a>
         <a href="#recipes">Recipes</a>
         <a href="#reviews">Reviews</a>
         <a href="#contact">Contact</a>
       </nav>
-      <button class="btn ghost menu-toggle" onclick="toggleMenu()">Menu</button>
     </div>
   </header>
 
-  <main id="home" class="container" style="position:relative;z-index:1">
+  <main class="container" id="home">
     <!-- HERO -->
     <section class="hero">
-      <div class="card hero-card">
+      <div class="hero-card card reveal">
         <span class="tag">Homemade goodness in every jar</span>
-        <h1 class="title">Shimla Spice: Homemade Himachali Pickles, Crafted in Small Batches.🍽️</h1>
-        <p class="sub">Authentic Himachali pickles crafted in small batches. <strong> No preservatives — just real ingredients, sun, time and love.</strong>.</p>
+        <h1 class="title">Shimla Spice: Homemade Himachali Pickles, Crafted in Small Batches.</h1>
+        <p class="lead">Authentic Himachali pickles crafted in small batches. <strong>No preservatives — just real ingredients, sun, time and love.</strong>strong></p>
         <div class="hero-cta">
-          <a class="btn primary" href="#products">Explore Products</a>
-          <a class="btn ghost" href="#recipes">Surprise Recipe</a>
+          <a class="btn primary" href="#products">Explore Pickles</a>
+          <a class="btn ghost" href="#contact">Contact Us</a>
         </div>
       </div>
-      <div class="sparkle-wrap card" style="padding:0;overflow:hidden">
-        <img alt="Colourful jars" src="assets/Hero2.jpeg" />
-        <div class="sparkle" aria-hidden="true"></div>
+      <div class="sparkle-wrap card reveal" style="padding:0;overflow:hidden">
+        <img src="assets/Hero2.jpeg" alt="Shimla jars"/>
       </div>
     </section>
 
     <!-- ABOUT -->
-    <section id="about">
+    <section id="about" class="reveal">
       <h2 class="section">Our Story</h2>
-      <div class="card" style="padding:22px">
-        <p style="margin:0;line-height:1.8">Shimla Spice was born out of love for the flavors we grew up with in Himachal. From our Nanu’s timeless pickle recipes to the homemade touch of family kitchens, every jar carries a piece of tradition and warmth. While our roots lie in nostalgia and cherished memories, our process blends those age-old methods with modern standards of quality and hygiene. At Shimla Spice, we believe that every bite should remind you of home - authentic, wholesome, and made with care. Our mission: <strong>Homemade goodness in every jar</strong>.</p>
+      <div class="card" style="padding:18px">
+        <p>Shimla Spice was born out of love for the flavors we grew up with in Himachal. From our Nanu’s timeless pickle recipes to the homemade touch of family kitchens, every jar carries a piece of tradition and warmth. While our roots lie in nostalgia and cherished memories, our process blends those age-old methods with modern standards of quality and hygiene. At Shimla Spice, we believe that every bite should remind you of home - authentic, wholesome, and made with care.</p>
       </div>
     </section>
 
     <!-- PRODUCTS -->
-       <section id="products" class="reveal">
+    <section id="products" class="reveal">
       <h2 class="section">Pickles & Chukhs</h2>
       <div class="cards" id="productsGrid">
         <!-- JS will populate 12 products -->
@@ -183,76 +145,67 @@
     </section>
 
     <!-- RECIPES -->
-    <section id="recipes">
-      <h2 class="section">Interactive Recipe Jars</h2>
-      <div class="recipes">
-        ${Array.from({length:6}).map((_,i)=>`
-          <div class="card jar" onclick="this.classList.toggle('active')">
-            <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="var(--brand)"/></svg>
-            <h4>Recipe ${i+1}</h4>
-            <p class="reveal">Secret ingredients & pairing tips revealed when clicked! 🥄</p>
-          </div>
-        `).join('')}
+    <section id="recipes" class="reveal">
+      <h2 class="section">Tap the Jar — Recipe Ideas</h2>
+      <div class="recipes" id="recipesGrid">
+        <!-- populated by JS -->
       </div>
     </section>
 
     <!-- REVIEWS -->
-    <section id="reviews">
-      <h2 class="section">What Our Customers Say</h2>
+    <section id="reviews" class="reveal">
+      <h2 class="section">What People Say</h2>
       <div class="carousel card">
-        <div class="slides">
-          <div class="slide"><p class="t-quote">“Absolutely love the flavours! Take me back to my Himachal trips.” — Anjali</p></div>
-          <div class="slide"><p class="t-quote">“Every jar is like a little burst of nostalgia.” — Rohit</p></div>
-          <div class="slide"><p class="t-quote">“The perfect gift for pickle lovers!” — Priya</p></div>
+        <div class="slides" id="slides">
+          <div class="slide"><p class="t-quote">"Best mango pickle I've had since my nani's kitchen." — Asha</p></div>
+          <div class="slide"><p class="t-quote">"Chukh with rajma-chawal = heaven." — Rohit</p></div>
+          <div class="slide"><p class="t-quote">"Lal Bharwa is 🔥. Stuffed perfectly." — Sana</p></div>
         </div>
-        <div class="dots">
-          <span class="dot active"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
-        </div>
+        <div class="dots" id="dots"></div>
       </div>
     </section>
 
     <!-- CONTACT -->
-    <section id="contact">
-      <h2 class="section">Get in Touch</h2>
-      <div class="card" style="padding:22px">
-        <form>
+    <section id="contact" class="reveal">
+      <h2 class="section">Contact & Wholesale</h2>
+      <div class="card" style="padding:18px">
+        <form id="contactForm">
           <label>Name</label>
-          <input type="text" placeholder="Your Name" />
+          <input type="text" name="name" required />
           <label>Email</label>
-          <input type="email" placeholder="email@example.com" />
+          <input type="email" name="email" required />
           <label>Message</label>
-          <textarea rows="4" placeholder="Your Message"></textarea>
-          <button type="submit" class="btn primary">Send Message</button>
+          <textarea name="message" rows="4"></textarea>
+          <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap">
+            <button class="btn primary" type="submit">Send Message</button>
+            <a class="btn ghost" href="https://wa.me/?text=Hello%20Shimla%20Spice%21%20I%27m%20interested%20in%20your%20pickles" target="_blank">Message on WhatsApp</a>
+          </div>
         </form>
       </div>
     </section>
+
   </main>
 
-  <!-- FOOTER -->
   <footer class="container">
     <div class="foot">
       <div>
-        <strong>Shimla Spice</strong><br/>
-        <small>Jai Maa Kamaksha</small>
+        <strong>Shimla Spice</strong><br/><small class="muted">Jai Maa Kamaksha</small>
       </div>
       <div>
         <h4>Quick Links</h4>
         <a href="#home">Home</a><br/>
         <a href="#products">Products</a><br/>
-        <a href="#recipes">Recipes</a><br/>
         <a href="#contact">Contact</a>
       </div>
       <div>
         <h4>Follow Us</h4>
         <a href="#">Instagram</a><br/>
-        <a href="#">Facebook</a><br/>
-        <a href="#">Twitter</a>
+        <a href="#">Facebook</a>
       </div>
     </div>
-    <div class="copyright">&copy; 2025 Shimla Spice. All rights reserved.</div>
+    <div style="margin-top:16px;color:var(--muted);">&copy; 2025 Shimla Spice — All rights reserved</div>
   </footer>
+
   <script>
     // PRODUCTS DATA
     const products = [
@@ -336,21 +289,6 @@
       const scrollPos = window.scrollY + 120;
       sections.forEach((sec,idx)=>{ if(!sec) return; const top=sec.offsetTop; const bot=top+sec.offsetHeight; navLinks[idx].classList.toggle('active', scrollPos>=top && scrollPos<bot); });
     });
-  </script>
-  <script>
-    // Toggle mobile menu
-    function toggleMenu(){document.querySelector('.menu').classList.toggle('open')}
-    
-    // Simple carousel logic
-    const slides=document.querySelectorAll('.slides .slide');
-    const dots=document.querySelectorAll('.dot');
-    let index=0;
-    function showSlide(i){
-      slides.forEach((s,j)=>s.style.transform=`translateX(${100*(j-i)}%)`);
-      dots.forEach((d,j)=>d.classList.toggle('active',j===i));
-    }
-    showSlide(index);
-    setInterval(()=>{index=(index+1)%slides.length;showSlide(index)},5000);
   </script>
 </body>
 </html>
