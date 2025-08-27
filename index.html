@@ -255,9 +255,7 @@
       </div>
     </section>
 
-    <!-- RECIPES (unchanged) -->
-
-	<!-- ===================== REVIEWS (CAROUSEL) ===================== -->
+    <!-- ===================== REVIEWS (CAROUSEL) Code pasted from here===================== -->
     <section id="reviews">
       <h2 class="section">People Are Licking Their Fingers 😋</h2>
       <div class="card carousel" id="carousel">
@@ -279,68 +277,134 @@
       <div class="dots" id="dots" aria-hidden="true"></div>
     </section>
 
+    <!-- ===================== CONTACT ===================== -->
+    <section id="contact">
+      <h2 class="section">Contact & Wholesale</h2>
+      <div class="card" style="padding:22px">
+        <form action="https://formspree.io/f/moqzlyqg" method="POST" onsubmit="return validateForm(this)">
+          <div class="grid" style="display:grid;gap:14px;grid-template-columns:1fr 1fr">
+            <div>
+              <label>Name
+                <input name="name" required>
+              </label>
+            </div>
+            <div>
+              <label>Email
+                <input type="email" name="email" required>
+              </label>
+            </div>
+          </div>
+          <div style="height:8px"></div>
+          <label>Message
+            <textarea name="message" rows="5" placeholder="Tell us what you need…"></textarea>
+          </label>
+          <div style="height:12px"></div>
+          <button class="btn primary" type="submit">Send</button>
+          <p class="muted" style="margin-top:8px">Or email: <a href="mailto:hello@shimlaspice.in">hello@shimlaspice.in</a></p>
+        </form>
+      </div>
+    </section>
   </main>
 
+  <!-- ===================== FOOTER ===================== -->
   <footer>
     <div class="container foot">
       <div>
         <strong>Shimla Spice</strong>
-        <p class="muted">Jai Maa Kamaksha — raksha karna, kalyan karna. 🙏</p>
+        <p class="muted" style="margin:8px 0 0">Jai Maa Kamaksha — raksha karna, kalyan karna. 🙏</p>
         <p class="copyright">© <span id="year"></span> Shimla Spice. All rights reserved.</p>
       </div>
       <div>
         <strong>Quick Links</strong>
-        <ul style="list-style:none;padding:0;line-height:2">
+        <ul style="list-style:none;padding:0;margin:8px 0 0;line-height:2">
           <li><a href="#about">About</a></li>
-          <li><a href="#products">
-	  <li><a href="#products">Products</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#recipes">Recipes</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
       <div>
-        <strong>Contact Us</strong>
-        <p>Email: <a href="mailto:info@shimlaspice.com">info@shimlaspice.com</a></p>
-        <p>Phone: <a href="tel:+919999999999">+91 99999 99999</a></p>
-        <p>Shimla, Himachal Pradesh</p>
+        <strong>Reach Us</strong>
+        <ul style="list-style:none;padding:0;margin:8px 0 0;line-height:2">
+          <li>Email: <a href="mailto:hello@shimlaspice.in">hello@shimlaspice.in</a></li>
+          <li>Instagram: @shimla_spice</li>
+        </ul>
       </div>
-    </footer>
+    </div>
+  </footer>
 
-    <!-- Scripts -->
-    <script>
-      // Current year auto-update
-      document.getElementById("year").textContent = new Date().getFullYear();
+  <script>
+    // ===================== UTIL & STATE =====================
+    const $ = sel => document.querySelector(sel);
+    const $$ = sel => [...document.querySelectorAll(sel)];
 
-      // Example: buy now redirection (make sure you replace product.link with your Amazon links)
-      const products = [
-        {
-          name: "Himachali Chukh",
-          image: "assets/Himachali Chukh.png",
-          link: "https://www.amazon.in/dp/example1"
-        },
-        {
-          name: "Amla Pickle",
-          image: "assets/Amla Pickle.png",
-          link: "https://www.amazon.in/dp/example2"
-        }
-        // add more products here
-      ];
+    // Year
+    $('#year').textContent = new Date().getFullYear();
 
-      const productGrid = document.querySelector(".product-grid");
-      if (productGrid) {
-        productGrid.innerHTML = products
-          .map(
-            (p) => `
-          <div class="product-card">
-            <figure>
-              <img src="${p.image}" alt="${p.name}" />
-            </figure>
-            <h3>${p.name}</h3>
-            <button onclick="window.open('${p.link}', '_blank')">Buy Now</button>
-          </div>
-        `
-          )
-          .join("");
+    // Mobile menu toggle (simple)
+    function toggleMenu(){
+      const nav = document.querySelector('.menu');
+      const visible = getComputedStyle(nav).display !== 'none';
+      nav.style.display = visible ? 'none' : 'flex';
+    }
+
+    // Card flip (for now, simple text swap)
+    function flipCard(el){
+      el.classList.toggle('flipped');
+      if(!el.dataset.orig){
+        el.dataset.orig = el.querySelector('.p-body').innerHTML;
       }
-    </script>
-  </body>
+      const showingDetails = el.classList.contains('flipped');
+      el.querySelector('.p-body').innerHTML = showingDetails
+        ? `<h3>Ingredients & Notes</h3><ul style="line-height:1.9; padding-left:18px"><li>No artificial preservatives</li><li>Cold-pressed oil</li><li>Hand-ground masalas</li></ul><div style="height:8px"></div><a class='btn primary' href='#contact'>Enquire</a>`
+        : el.dataset.orig;
+    }
+
+    // Jar reveal toggle
+    function toggleJar(card){ card.classList.toggle('active'); }
+
+    // Recipe Roulette
+    const ideas = [
+      'Chukh + rajma-chawal = soul food',
+      'Mango pickle tadka in dal = wow',
+      'Lal Bharwa crumbled over khichdi',
+      'Chukh + butter on hot toast',
+      'Mango pickle with paratha + curd',
+      'Add a spoon to poha for zing'
+    ];
+    function recipeRoulette(){
+      const msg = ideas[Math.floor(Math.random()*ideas.length)];
+      $('#roulette').textContent = '→ ' + msg;
+    }
+
+    // ===================== CAROUSEL =====================
+    const slides = $('#slides');
+    const slideCount = slides.children.length;
+    let i = 0;
+    const dots = $('#dots');
+    for(let d=0; d<slideCount; d++){
+      const dot = document.createElement('div');
+      dot.className = 'dot' + (d===0?' active':'');
+      dot.addEventListener('click',()=>goTo(d));
+      dots.appendChild(dot);
+    }
+    function goTo(n){
+      i = (n+slideCount)%slideCount;
+      slides.style.transform = `translateX(-${i*100}%)`;
+      $$('#dots .dot').forEach((el,idx)=> el.classList.toggle('active', idx===i));
+    }
+    setInterval(()=>goTo(i+1), 4000);
+
+    // ===================== FORM VALIDATION =====================
+    function validateForm(form){
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      if(!name || !email){
+        alert('Please fill your name and email.');
+        return false;
+      }
+      return true;
+    }
+  </script>
+</body>
 </html>
