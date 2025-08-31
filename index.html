@@ -7,6 +7,9 @@
   <title>Shimla Spice</title>
   <meta name="description" content="Shimla Spice — Homemade goodness in every jar." />
   <style>
+    section {
+      scroll-margin-top: 80px;
+	}
     /* =====================
        THEME & RESETS
        ===================== */
@@ -44,7 +47,7 @@
     header{position:sticky;top:0;z-index:50;background:rgba(255,248,239,.75);backdrop-filter:blur(8px) saturate(1.2);border-bottom:1px solid #ffe9d9}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
     .brand{display:flex;align-items:center;gap:12px;font-weight:900}
-    .brand-logo{width:122px;height:122px;border-radius:44px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center;color:white;box-shadow:var(--shadow-soft)}
+    .brand-logo{width:44px;height:44px;border-radius:40px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center;color:white;box-shadow:var(--shadow-soft)}
     .brand small{display:block;font-weight:700;color:var(--muted);font-size:11px;letter-spacing:.4px}
     .menu{display:flex;gap:18px;align-items:center}
     .menu a{padding:15px 12px;border-radius:12px;font-weight:700;color:#374151}
@@ -73,7 +76,6 @@
     .title{font-size:clamp(28px,5vw,48px);line-height:1.05;margin:12px 0 8px 0}
     .sub{font-size:18px;color:var(--muted)}
     .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
-
     .sparkle-wrap{position:relative}
     .sparkle{position:absolute;inset:12px;border-radius:var(--radius);background:repeating-conic-gradient(from 0deg, rgba(255,255,255,.2) 0 20deg, rgba(255,255,255,0) 20deg 40deg);animation:spin 18s linear infinite}
     @keyframes spin{to{transform:rotate(1turn)}}
@@ -93,25 +95,182 @@
     .chip{font-size:12px;background:#f3f4f6;padding:6px 10px;border-radius:999px;display:inline-block}
 
     /* =====================
-       INTERACTIVE RECIPES
+       INTERACTIVE BENEFITS
        ===================== */
-    .recipes{display:grid;gap:18px;grid-template-columns:repeat(3,1fr)}
-    .jar{padding:18px;text-align:center;cursor:pointer;transition:transform .15s}
-    .jar:active{transform:translateY(1px)}
-    .jar svg{width:70px;height:70px}
-    .reveal{display:none;margin-top:10px;color:var(--muted)}
-    .jar.active .reveal{display:block}
+.our-story-slideshow {
+  position: relative;
+  max-width: 1200px;
+  height: 350px;
+  margin: 40px auto;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  perspective: 1000px; /* for subtle parallax */
+}
+
+.our-story-slideshow .slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out, transform 1.2s ease-in-out;
+  transform: scale(1.05);
+}
+
+.our-story-slideshow .slide.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.our-story-slideshow button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0,0,0,0.3);
+  color: white;
+  border: none;
+  font-size: 26px;
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 2;
+  opacity: 0; /* hidden by default */
+  transition: background-color 0.3s, opacity 0.3s;
+}
+
+.our-story-slideshow:hover button {
+  opacity: 1; /* show on hover */
+}
+
+.prev { left: 15px; }
+.next { right: 15px; }
+
+.our-story-slideshow button:hover {
+  background-color: rgba(0,0,0,0.6);
+}
+
+/* Benefits Section Styling */
+.benefits-container {
+  max-width: 1000px;
+  margin: 120 auto;
+  padding: 00px 0px;
+  text-align: Left;
+}
+
+.benefits-title {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.benefit-card {
+  background: #fff8ef;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.benefit-card h3 {
+  margin-bottom: 10px;
+  color: #d35400;
+}
+
+.benefit-card p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+.benefit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+
+
 
     /* =====================
        TESTIMONIALS CAROUSEL
        ===================== */
-    .carousel{position:relative;overflow:hidden}
-    .slides{display:flex;transition:transform .5s}
-    .slide{min-width:100%;padding:22px}
-    .t-quote{font-size:20px;line-height:1.6}
-    .dots{display:flex;gap:8px;justify-content:center;margin-top:10px}
-    .dot{width:10px;height:10px;border-radius:999px;background:#e5e7eb}
-    .dot.active{background:var(--brand)}
+  
+   .reviews-section {
+      background: #fffdf9;
+      padding: 40px 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .reviews-container {
+      display: flex;
+      flex-direction: column;
+      animation: scrollUp 20s linear infinite;
+    }
+
+    .reviews-container:hover {
+      animation-play-state: paused;
+    }
+
+    .review {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    .review img {
+      max-width: 500px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    @keyframes scrollUp {
+      0% { transform: translateY(100%); }
+      100% { transform: translateY(-100%); }
+    }
+
+      .reviews-section {
+      background: #fffdf9;
+      padding: 40px 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .reviews-container {
+      display: flex;
+      flex-direction: column;
+      animation: scrollUp 20s linear infinite;
+    }
+
+    .reviews-container:hover {
+      animation-play-state: paused;
+    }
+
+    .review {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    .review img {
+      max-width: 500px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    @keyframes scrollUp {
+      0% { transform: translateY(100%); }
+      100% { transform: translateY(-100%); }
+    }
+
+
 
     /* =====================
        CONTACT
@@ -132,12 +291,12 @@
     @media (max-width:980px){
       .hero{grid-template-columns:1fr}
       .cards{grid-template-columns:1fr 1fr}
-      .recipes{grid-template-columns:1fr 1fr}
+      .benefits{grid-template-columns:1fr 1fr}
     }
     @media (max-width:640px){
       .menu{display:none}
       .menu-toggle{display:inline-flex}
-      .cards,.recipes{grid-template-columns:1fr}
+      .cards,.benefits{grid-template-columns:1fr}
       .foot{grid-template-columns:1fr}
     }
   </style>
@@ -162,10 +321,11 @@
           <small>Jai Maa Kamaksha — Raksha & Kalyan</small>
         </span>
       </a>
+	
       <nav class="menu">
         <a href="#about">About</a>
         <a href="#products">Products</a>
-        <a href="#recipes">Recipes</a>
+        <a href="#benefits">Benefits</a>
         <a href="#reviews">Reviews</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -174,15 +334,16 @@
   </header>
 
   <main id="home" class="container" style="position:relative;z-index:1">
-    <!-- HERO -->
-    <section class="hero">
+    
+	<!-- HERO -->
+    <section class="hero" style="padding-top:20px;">
       <div class="card hero-card">
         <span class="tag">Homemade goodness in every jar</span>
         <h1 class="title">Colourful, Interactive & Tasty — a site you’ll want to snack on 🍽️</h1>
         <p class="sub">Authentic Himachali pickles crafted in small batches — zero artificial preservatives.</p>
         <div class="hero-cta">
           <a class="btn primary" href="#products">Explore Products</a>
-          <a class="btn ghost" href="#recipes">Surprise Recipe</a>
+          <a class="btn ghost" href="#benefits">Surprise Recipe</a>
         </div>
       </div>
       <div class="sparkle-wrap card" style="padding:0;overflow:hidden">
@@ -192,12 +353,69 @@
     </section>
 
     <!-- ABOUT -->
-    <section id="about">
-      <h2 class="section">Our Story</h2>
-      <div class="card" style="padding:22px">
-        <p>Shimla Spice began in our family kitchen in Himachal Pradesh. Every jar is a little festival — bursting with chilli, turmeric, hing and love. 💛</p>
-      </div>
+    <section id="about" style="scroll-margin-top:80px; margin-bottom:30px;">
+  	<h2 class="section" style="font-size:26px; margin-bottom:15px;">Our Story</h2>
+  	<div class="card" style="padding:22px; background:#fffaf5; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+    	<p style="font-size:18px; line-height:1.6; color:#444;"> Shimla Spice was born in our family kitchen in the hills of Himachal. Every jar carries not just spice, but memories of warmth, love and tradition — like sharing a piece of home with you. 💛
+    </p>
+    </div>
     </section>
+    <div>
+    <h2 class="section" style="font-size:26px; margin-bottom:5px;">Glimps of our culture and food</h2>
+    </div>
+
+<!-- OUR Story Premium Slideshow -->
+<div class="our-story-slideshow">
+  <div class="slide active" style="background-image: url('assets/culture-food1.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/fruit1.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/vegetable1.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/food2.jpg');"></div>
+  <!-- Add more slides here -->
+
+  <button class="prev">&#10094;</button>
+  <button class="next">&#10095;</button>
+</div>
+
+<script>
+let currentSlide = 0;
+const slides = document.querySelectorAll('.our-story-slideshow .slide');
+const totalSlides = slides.length;
+
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.remove('active');
+    if(i === index) slide.classList.add('active');
+  });
+}
+
+document.querySelector('.our-story-slideshow .next').addEventListener('click', () => {
+  currentSlide = (currentSlide + 1) % totalSlides;
+  showSlide(currentSlide);
+});
+
+document.querySelector('.our-story-slideshow .prev').addEventListener('click', () => {
+  currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+  showSlide(currentSlide);
+});
+
+// Auto-slide every 5 seconds
+setInterval(() => {
+  currentSlide = (currentSlide + 1) % totalSlides;
+  showSlide(currentSlide);
+}, 5000);
+
+// Optional: subtle parallax effect on scroll
+window.addEventListener('scroll', () => {
+  const slideshow = document.querySelector('.our-story-slideshow');
+  const offset = window.scrollY;
+  slideshow.querySelectorAll('.slide').forEach(slide => {
+    slide.style.transform = `translateY(${offset * 0.05}px) scale(${slide.classList.contains('active') ? 1 : 1.05})`;
+  });
+});
+</script>
+
+
+
 
     <!-- PRODUCTS -->
     <section id="products">
@@ -222,7 +440,7 @@
         </article>
         <article class="card p-card">
           <figure><img src="assets/Green Chilly & Ginger.png" alt="Green Chilly & Ginger"/></figure>
-          <div class="p-body"><h3>Green Chilly & Ginger</h3><a class="btn primary" href="https://www.amazon.in/stores/page/B697823D-DD8A-4C5C-95BE-07A9F9FEC149" target="_blank">Buy Now</a></div>
+          <div class="p-body"><h3>Green Chilly & Ginger</h3><a class="btn primary" href="https://www.amazon.in/stores/page/B697823D-DD8A-4C5C-95BE-07A9F9FEC149" target="_blank">Buy Now</a>	</div>
         </article>
         <article class="card p-card">
           <figure><img src="assets/Lemon Pickle.png" alt="Lemon Pickle"/></figure>
@@ -255,27 +473,156 @@
       </div>
     </section>
 
-    <!-- ===================== REVIEWS (CAROUSEL) Code pasted from here===================== -->
-    <section id="reviews">
-      <h2 class="section">People Are Licking Their Fingers 😋</h2>
-      <div class="card carousel" id="carousel">
-        <div class="slides" id="slides">
-          <div class="slide">
-            <p class="t-quote">“Best mango pickle I’ve had since nani’s kitchen. Perfect balance of tang, spice, and nostalgia.”</p>
-            <p class="muted">— Asha, Delhi</p>
-          </div>
-          <div class="slide">
-            <p class="t-quote">“Chukh with rajma‑chawal = heaven. Brings that Himachali soul to my table.”</p>
-            <p class="muted">— Rohit, Chandigarh</p>
-          </div>
-          <div class="slide">
-            <p class="t-quote">“Lal Bharwa is 🔥. Stuffed perfectly, gives a smoky bite with every meal.”</p>
-            <p class="muted">— Sana, Mumbai</p>
-          </div>
-        </div>
+
+<!-- Benefits Section -->
+<section id="benefits" >
+  <div class="benefits-container">
+    <h2 class="benefits-title">Benefits of Pickles</h2>
+    <div class="benefits-grid">
+
+      <div class="benefit-card">
+        <h3>Rich in Probiotics</h3>
+        <p>Fermented pickles contain natural probiotics that promote gut health and digestion.</p>
       </div>
-      <div class="dots" id="dots" aria-hidden="true"></div>
-    </section>
+
+      <div class="benefit-card">
+        <h3>Boosts Immunity</h3>
+        <p>Packed with antioxidants and essential vitamins that strengthen your immune system.</p>
+      </div>
+
+      <div class="benefit-card">
+        <h3>Good Source of Nutrients</h3>
+        <p>Pickles retain many of the original nutrients from fruits and vegetables.</p>
+      </div>
+
+      <div class="benefit-card">
+        <h3>Improves Metabolism</h3>
+        <p>Spices used in pickles like ginger, garlic, and chili boost metabolism naturally.</p>
+      </div>
+
+      <div class="benefit-card">
+        <h3>Natural Preservative-Free</h3>
+        <p>Homemade pickles are free from artificial colors and harmful preservatives.</p>
+      </div>
+
+      <div class="benefit-card">
+        <h3>Good for your Gut</h3>
+        <p>Homemade pickles are free from artificial colors and harmful preservatives.</p>
+      </div>
+
+      <div class="benefit-card">
+        <h3>Empty 7</h3>
+        <p>Homemade pickles are free from artificial colors and harmful preservatives.</p>
+      </div>
+
+      <div class="benefit-card">
+        <h3>Empty 8</h3>
+        <p>Homemade pickles are free from artificial colors and harmful preservatives.</p>
+      </div>
+
+      <div class="benefit-card">
+        <h3>Empty 9</h3>
+        <p>Homemade pickles are free from artificial colors and harmful preservatives.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- ===================== REVIEWS (CAROUSEL)===================== -->
+<!-- =====================
+     REVIEWS SECTION
+===================== -->
+<section id="reviews">
+      <h2 class="section">What customers say about us</h2>
+      <div class="card" style="padding:0px">
+  <div class="reviews-wrapper">	
+    <div class="reviews-scroll">
+      <!-- Review 1 -->
+      <div class="review">
+        <img src="assets/reviews/review1.png" alt="Review 1">
+      </div>
+      <!-- Review 2 -->
+      <div class="review">
+        <img src="assets/reviews/review2.png" alt="Review 2">
+      </div>
+      <!-- Review 3 -->
+      <div class="review">
+        <img src="assets/reviews/review3.png" alt="Review 3">
+      </div>
+      <!-- Review 4 -->
+      <div class="review">
+        <img src="assets/reviews/review4.png" alt="Review 4">
+      </div>
+      <!-- Duplicate Reviews for Infinite Effect -->
+      <div class="review">
+        <img src="assets/reviews/review1.png" alt="Review 1">
+      </div>
+      <div class="review">
+        <img src="assets/reviews/review2.png" alt="Review 2">
+      </div>
+      <div class="review">
+        <img src="assets/reviews/review3.png" alt="Review 3">
+      </div>
+      <div class="review">
+        <img src="assets/reviews/review4.png" alt="Review 4">
+       </div>
+     </div>
+   </div>
+ </div>
+</section>
+
+
+<style>
+
+/* ===================== REVIEWS SECTION STYLE===================== */
+.reviews-section {
+  background: #fffaf5;
+  padding: 0px 10px;
+  border-radius:12px;
+  text-align: Left;
+  position: relative;
+  overflow: hidden;
+}
+
+.reviews-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0px;
+  color: #333;
+}
+
+.reviews-wrapper {
+  height: 250px; /* Fixed height for scroll effect */
+  overflow: hidden;
+  position: relative;
+}
+
+.reviews-scroll {
+  display: flex;
+  flex-direction: column;
+  animation: scrollUp 8s linear infinite;
+}
+
+.reviews-scroll:hover {
+  animation-play-state: paused; /* Hover par ruk jayega */
+}
+
+.review {
+  margin: 10px 0;
+}
+
+.review img {
+  width: 900px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* Infinite vertical scroll animation */
+@keyframes scrollUp {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+</style>
 
     <!-- ===================== CONTACT ===================== -->
     <section id="contact">
@@ -319,7 +666,7 @@
         <ul style="list-style:none;padding:0;margin:8px 0 0;line-height:2">
           <li><a href="#about">About</a></li>
           <li><a href="#products">Products</a></li>
-          <li><a href="#recipes">Recipes</a></li>
+          <li><a href="#Benefits">Benefits</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
