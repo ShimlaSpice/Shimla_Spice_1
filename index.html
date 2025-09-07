@@ -47,7 +47,7 @@
     header{position:sticky;top:0;z-index:50;background:rgba(255,248,239,.75);backdrop-filter:blur(8px) saturate(1.2);border-bottom:1px solid #ffe9d9}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
     .brand{display:flex;align-items:center;gap:12px;font-weight:900}
-    .brand-logo{width:44px;height:44px;border-radius:40px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center;color:white;box-shadow:var(--shadow-soft)}
+    .brand-logo{width:44px;height:44px;border-radius:40px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center;color:white;box-shadow:var(--     shadow-soft)}
     .brand small{display:block;font-weight:700;color:var(--muted);font-size:11px;letter-spacing:.4px}
     .menu{display:flex;gap:18px;align-items:center}
     .menu a{padding:15px 12px;border-radius:12px;font-weight:700;color:#374151}
@@ -60,12 +60,32 @@
     .floaty{
       position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.25
     }
-    .blob{position:absolute;width:220px;height:220px;border-radius:50%;filter:blur(40px);animation:float 12s ease-in-out infinite}
-    .b1{background:var(--brand);top:5%;left:6%}
-    .b2{background:var(--brand-2);top:20%;right:8%;animation-duration:15s}
-    .b3{background:var(--brand-3);bottom:8%;left:14%;animation-duration:18s}
-    .b4{background:var(--brand-4);bottom:10%;right:12%;animation-duration:20s}
-    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+    .blob{
+	position:absolute;
+     	width:220px;
+	height:220px;
+	border-radius:50%;
+	filter:blur(20px);
+	animation:float 2s ease-in-out infinite
+	}
+    .b1{background:var(--brand);top:5%;left:6%;right:8%;animation-duration:12s}
+    .b2{background:var(--brand-2);top:20%;right:8%;animation-duration:16s}
+    .b3{background:var(--brand-3);bottom:8%;left:14%;animation-duration:7s}
+    .b4{background:var(--brand-4);bottom:12%;right:22%;animation-duration:20s}
+	@keyframes float {
+	  0%, 100% { 
+	    transform: translate(0, 0); 
+		  }
+	  25% { 
+	    transform: translate(120px, -130px); 
+	     }
+	  50% { 
+	    transform: translate(10, -160px); 
+	      }
+	  75% { 
+	    transform: translate(-120px, -230px); 
+  	      }
+		}
 
     /* =====================
        HERO SECTION
@@ -95,28 +115,27 @@
     .chip{font-size:12px;background:#f3f4f6;padding:6px 10px;border-radius:999px;display:inline-block}
 
     /* =====================
-       INTERACTIVE BENEFITS
+       our-story-slideshow
        ===================== */
 .our-story-slideshow {
   position: relative;
-  max-width: 1200px;
-  height: 350px;
-  margin: 40px auto;
+  width: 100%;
+  max-width: 1000px; /* apne hisaab se adjust karo */
+  height: 400px;     /* slideshow ki fixed height */
+  margin: auto;
   overflow: hidden;
-  border-radius: 16px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-  perspective: 1000px; /* for subtle parallax */
+  border-radius: 15px; /* thoda premium look */
 }
 
 .our-story-slideshow .slide {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-size: cover;
-  background-position: center;
+  background-size: cover; /* image box fill karegi */
+  background-position: center; /* center se adjust hogi */
+  background-repeat: no-repeat;
   opacity: 0;
-  transition: opacity 1.2s ease-in-out, transform 1.2s ease-in-out;
-  transform: scale(1.05);
+  transition: opacity 0.8s ease-in-out;
 }
 
 .our-story-slideshow .slide.active {
@@ -155,7 +174,7 @@
 .benefits-container {
   max-width: 1500px;
   margin: 120 auto;
-  padding: 00px 0px;
+  padding: 0px 0px;
   text-align: Left;
 }
 
@@ -282,7 +301,7 @@
         <img src="assets/SS_Logo.png" alt="Shimla Spice" class="brand-logo" />
         <span>
           Shimla Spice
-          <small>Jai Maa Kamaksha — Raksha & Kalyan</small>
+          <small>Homemade Goodness in Every Jar</small>
         </span>
       </a>
 	
@@ -303,11 +322,11 @@
     <section class="hero" style="padding-top:20px;">
       <div class="card hero-card">
         <span class="tag">Homemade goodness in every jar</span>
-        <h1 class="title">Colourful, Interactive & Tasty — a site you’ll want to snack on 🍽️</h1>
-        <p class="sub">Authentic Himachali pickles crafted in small batches — zero artificial preservatives.</p>
+        <h1 class="title">Not just pickles, it’s love, legacy, and Himachal in a jar.🍽️</h1>
+        <p class="sub">Authentic Himachali pickles crafted in small batches - No artificial flavours, no preservatives.</p>
         <div class="hero-cta">
-          <a class="btn primary" href="#products">Explore Products</a>
-          <a class="btn ghost" href="#benefits">Surprise Recipe</a>
+          <a class="btn primary" href="#products">Chalo, barni kholte hain🍯✨</a>
+          <a class="btn ghost" href="#reviews">Pehle reviews dekh lo… phir barni khud bula legi 🍯</a>
         </div>
       </div>
       <div class="sparkle-wrap card" style="padding:0;overflow:hidden">
@@ -320,21 +339,36 @@
     <section id="about" style="scroll-margin-top:80px; margin-bottom:30px;">
   	<h2 class="section" style="font-size:26px; margin-bottom:15px;">Our Story</h2>
   	<div class="card" style="padding:22px; background:#fffaf5; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
-    	<p style="font-size:18px; line-height:1.6; color:#444;"> Shimla Spice was born in our family kitchen in the hills of Himachal. Every jar carries not just spice, but memories of warmth, love and tradition — like sharing a piece of home with you. 💛
+    	<p style="font-size:18px; line-height:1.6; color:#444;"> Shimla Spice was born in our family kitchen, tucked away in the hills of Himachal. What began as small batches of pickles for loved ones soon turned into jars of stories worth sharing. Each recipe carries the taste of our traditions, the patience of slow cooking, and the warmth of home. For us, it’s not just about pickles it’s about bottling memories, so every spoonful feels like family sitting across the table.💛
     </p>
     </div>
     </section>
-    <div>
-    <h2 class="section" style="font-size:26px; margin-bottom:5px;">Glimps of our culture and food</h2>
-    </div>
+    
+	<div>
+    	<h2 class="section" style="font-size:26px; margin-bottom:5px;">A Taste of Culture, A Glimpse of Home</h2>
+    	</div>
 
 <!-- OUR Story Premium Slideshow -->
-<div class="our-story-slideshow">
-  <div class="slide active" style="background-image: url('assets/Amla Pickle.png');"></div>
-  <div class="slide" style="background-image: url('assets/Hero1.png');"></div>
-  <div class="slide" style="background-image: url('assets/Hero2.jpeg');"></div>
-  <div class="slide" style="background-image: url('assets/SS_Logo.png');"></div>
-  <!-- Add more slides here -->
+  <div class="our-story-slideshow">
+  <div class="slide active" style="background-image: url('assets/Glipmse1.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse2.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse3.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse4.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse5.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse6.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse7.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse8.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse9.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse10.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse11.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse12.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse13.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse14.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse15.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse16.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse17.jpg');"></div>
+
+<!-- Add more slides here -->
 
   <button class="prev">&#10094;</button>
   <button class="next">&#10095;</button>
@@ -428,11 +462,11 @@ window.addEventListener('scroll', () => {
         </article>
         <article class="card p-card">
           <figure><img src="assets/Himachali Chukh.png" alt="Garlic Pickle"/></figure>
-          <div class="p-body"><h3>Garlic Pickle</h3><a class="btn primary" href="https://www.amazon.in/stores/page/B697823D-DD8A-4C5C-95BE-07A9F9FEC149" target="_blank">Buy Now</a></div>
+          <div class="p-body"><h3>Garlic Pickle</h3><a class="btn primary" href="https://www.amazon.in/stores/page/B697823D-DD8A-4C5C-95BE-07A9F9FEC149" target="_blank">Coming Soon</a></div>
         </article>
         <article class="card p-card">
           <figure><img src="assets/Himachali Chukh.png" alt="Mix Vegetable Pickle"/></figure>
-          <div class="p-body"><h3>Mix Vegetable Pickle</h3><a class="btn primary" href="https://www.amazon.in/stores/page/B697823D-DD8A-4C5C-95BE-07A9F9FEC149" target="_blank">Buy Now</a></div>
+          <div class="p-body"><h3>Mix Vegetable Pickle</h3><a class="btn primary" href="https://www.amazon.in/stores/page/B697823D-DD8A-4C5C-95BE-07A9F9FEC149" target="_blank">Coming Soon</a></div>
         </article>
       </div>
     </section>
@@ -445,28 +479,26 @@ window.addEventListener('scroll', () => {
     <div class="benefits-grid">
 
       <div class="benefit-card">
-        <h3>Rich in Probiotics</h3>
-        <p>Fermented pickles contain natural probiotics that promote gut health and digestion.</p>
+        <h3>Rich in Probiotics 🦠</h3>
+        <p>Naturally Fermented pickles contain natural probiotics that promote gut health and digestion.</p>
       </div>
 
       <div class="benefit-card">
-        <h3>Boosts Immunity</h3>
-        <p>Packed with antioxidants and essential vitamins that strengthen your immune system.</p>
+        <h3>Boosts Immunity 🛡️</h3>
+        <p>Spices, garlic, and ginger in pickles strengthen the body’s defense system. Packed with antioxidants and essential vitamins that strengthen your immune system.</p></div>
+
+      <div class="benefit-card">
+        <h3>Packed with Antioxidants✨</h3>
+        <p>Vegetables and spices fight free radicals, keeping you healthy and youthful.</p></div>
+
+      <div class="benefit-card">
+        <h3>Enhances Appetite 🍽️</h3>
+        <p>Tangy-sour taste stimulates taste buds and improves appetite.</p>
       </div>
 
       <div class="benefit-card">
-        <h3>Good Source of Nutrients</h3>
-        <p>Pickles retain many of the original nutrients from fruits and vegetables.</p>
-      </div>
-
-      <div class="benefit-card">
-        <h3>Improves Metabolism</h3>
-        <p>Spices used in pickles like ginger, garlic, and chili boost metabolism naturally.</p>
-      </div>
-
-      <div class="benefit-card">
-        <h3>Natural Preservative-Free</h3>
-        <p>Homemade pickles are free from artificial colors and harmful preservatives.</p>
+        <h3>Good for Heart ❤️</h3>
+        <p>Ingredients like garlic and mustard seeds support heart health.</p>
       </div>
 
       <div class="benefit-card">
@@ -475,18 +507,16 @@ window.addEventListener('scroll', () => {
       </div>
 
       <div class="benefit-card">
-        <h3>Empty 7</h3>
-        <p>Homemade pickles are free from artificial colors and harmful preservatives.</p>
-      </div>
+        <h3>Preserves Nutrients 🌱</h3>
+        <p>Seasonal veggies retain their vitamins and minerals for longer periods.</p></div>
 
       <div class="benefit-card">
-        <h3>Empty 8</h3>
-        <p>Homemade pickles are free from artificial colors and harmful preservatives.</p>
-      </div>
+        <h3>Aids in Hydration 💧</h3>
+        <p>Salt and electrolytes in pickles help maintain hydration, especially in summers.</p></div>
 
       <div class="benefit-card">
-        <h3>Empty 9</h3>
-        <p>Homemade pickles are free from artificial colors and harmful preservatives.</p>
+        <h3>Mood Booster 😋</h3>
+        <p>That burst of tangy flavor uplifts mood and adds joy to every meal.</p>
       </div>
     </div>
   </div>
@@ -633,7 +663,7 @@ window.addEventListener('scroll', () => {
 .reviews-scroll {
   display: flex;
   flex-direction: column;
-  animation: scrollUp 8s linear infinite;
+  animation: scrollUp 15s linear infinite;
 }
 
 .reviews-scroll:hover {
@@ -645,7 +675,8 @@ window.addEventListener('scroll', () => {
 }
 
 .review img {
-  width: 900px;
+  max-width:100%;
+  height:auto;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
@@ -657,34 +688,109 @@ window.addEventListener('scroll', () => {
 }
 </style>
 
-    <!-- ===================== CONTACT ===================== -->
-    <section id="contact">
-      <h2 class="section">Contact & Wholesale</h2>
-      <div class="card" style="padding:22px">
-        <form action="https://formspree.io/f/moqzlyqg" method="POST" onsubmit="return validateForm(this)">
-          <div class="grid" style="display:grid;gap:14px;grid-template-columns:1fr 1fr">
-            <div>
-              <label>Name
-                <input name="name" required>
-              </label>
-            </div>
-            <div>
-              <label>Email
-                <input type="email" name="email" required>
-              </label>
-            </div>
-          </div>
-          <div style="height:8px"></div>
-          <label>Message
-            <textarea name="message" rows="5" placeholder="Tell us what you need…"></textarea>
-          </label>
-          <div style="height:12px"></div>
-          <button class="btn primary" type="submit">Send</button>
-          <p class="muted" style="margin-top:8px">Or email: <a href="mailto:hello@shimlaspice.in">hello@shimlaspice.in</a></p>
-        </form>
+   <!-- ===================== CONTACT ===================== -->
+<!-- ===================== CONTACT ===================== -->
+<section id="contact">
+  <h2 class="section">Contact Us</h2>
+  <div class="card contact-card">
+    <form id="contactForm" action="https://formspree.io/f/myzdlpbn" method="POST">
+      <div class="grid two-columns">
+        <div>
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" required placeholder="Your Name">
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required placeholder="you@example.com">
+        </div>
       </div>
-    </section>
-  </main>
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="5" placeholder="Tell us what you need…"></textarea>
+
+      <button class="btn primary" type="submit">Send</button>
+      <!-- Success message -->
+      <p id="formMessage" style="margin-top:10px;color:green;"></p>
+
+      <p class="muted">Or email: <a href="mailto:hello.shimlaspice@gmail.com">hello.shimlaspice@gmail.com</a></p>
+    </form>
+  </div>
+</section>
+
+<style>
+  .contact-card {
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+  input, textarea {
+    width: 100%;
+    padding: 8px 10px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+  button.btn.primary {
+    background: #ff5722;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  button.btn.primary:hover {
+    background: #e64a19;
+  }
+  .muted a {
+    color: #555;
+    text-decoration: underline;
+  }
+</style>
+
+<script>
+const form = document.getElementById('contactForm');
+const message = document.getElementById('formMessage');
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const formData = new FormData(form);
+
+  fetch(form.action, {
+    method: 'POST',
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.ok) {
+      message.textContent = "Thanks! Your message has been sent.";
+      form.reset();
+      setTimeout(() => {
+        window.location.href = 'https://www.shimlaspice.in/';
+      }, 5000);
+    } else if (data.errors) {
+      message.textContent = data.errors.map(e => e.message).join(", ");
+    } else {
+      message.textContent = "Oops! There was a problem.";
+    }
+  })
+  .catch(() => {
+    message.textContent = "Oops! There was a problem.";
+  });
+});
+</script>
 
   <!-- ===================== FOOTER ===================== -->
   <footer>
@@ -699,8 +805,7 @@ window.addEventListener('scroll', () => {
         <ul style="list-style:none;padding:0;margin:8px 0 0;line-height:2">
           <li><a href="#about">About</a></li>
           <li><a href="#products">Products</a></li>
-          <li><a href="#Benefits">Benefits</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#benefits">Benefits</a></li>
         </ul>
       </div>
       <div>
@@ -725,8 +830,9 @@ window.addEventListener('scroll', () => {
     function toggleMenu(){
       const nav = document.querySelector('.menu');
       const visible = getComputedStyle(nav).display !== 'none';
-      nav.style.display = visible ? 'none' : 'flex';
-    }
+      window.addEventListener('resize', ()=> {
+  	if(window.innerWidth > 640) nav.style.display = 'flex';
+	});
 
     // Card flip (for now, simple text swap)
     function flipCard(el){
@@ -775,16 +881,7 @@ window.addEventListener('scroll', () => {
     }
     setInterval(()=>goTo(i+1), 4000);
 
-    // ===================== FORM VALIDATION =====================
-    function validateForm(form){
-      const name = form.name.value.trim();
-      const email = form.email.value.trim();
-      if(!name || !email){
-        alert('Please fill your name and email.');
-        return false;
-      }
-      return true;
-    }
-  </script>
-</body>
+
+    </script>
+  </body>
 </html>
