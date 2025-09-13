@@ -120,11 +120,11 @@
 .our-story-slideshow {
   position: relative;
   width: 100%;
-  max-width: 1000px; /* apne hisaab se adjust karo */
-  height: 400px;     /* slideshow ki fixed height */
+  max-width: 1200px; /* apne hisaab se adjust karo */
+  height: 390px;     /* slideshow ki fixed height */
   margin: auto;
   overflow: hidden;
-  border-radius: 16px; /* thoda premium look */
+  border-radius: 15px; /* thoda premium look */
 }
 
 .our-story-slideshow .slide {
@@ -336,79 +336,44 @@
     </section>
 
     <!-- ABOUT -->
-    <section id="about" style="scroll-margin-top:80px; margin-bottom:30px;">
+    <section id="about" style="scroll-margin-top:70px; margin-bottom:15px;">
   	<h2 class="section" style="font-size:26px; margin-bottom:15px;">Our Story</h2>
   	<div class="card" style="padding:22px; background:#fffaf5; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
     	<p style="font-size:18px; line-height:1.6; color:#444;"> Shimla Spice was born in our family kitchen, tucked away in the hills of Himachal. What began as small batches of pickles for loved ones soon turned into jars of stories worth sharing. Each recipe carries the taste of our traditions, the patience of slow cooking, and the warmth of home. For us, it’s not just about pickles it’s about bottling memories, so every spoonful feels like family sitting across the table.💛
     </p>
     </div>
     </section>
+
+<!-- OUR Story Premium Slideshow -->
     
 	<div>
     	<h2 class="section" style="font-size:26px; margin-bottom:5px;">A Taste of Culture, A Glimpse of Home</h2>
     	</div>
 
-<!-- OUR Story Premium Slideshow -->
   <div class="our-story-slideshow" style="padding:22px; background:#fffaf5; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
-  <div class="slide active" style="background-image: url('assets/Glimps/Glipmse1.jpg');"></div>
-  <div class="slide" style="background-image: url('assets/Glimps/Glipmse2.jpg');"></div>
-  <div class="slide" style="background-image: url('assets/Glimps/Glipmse3.jpg');"></div>
-  <div class="slide" style="background-image: url('assets/Glimps/Glipmse4.jpg');"></div>
-  <div class="slide" style="background-image: url('assets/Glimps/Glipmse5.jpg');"></div>
-  <div class="slide" style="background-image: url('assets/Glimps/Glipmse8.jpg');"></div>
-  <div class="slide" style="background-image: url('assets/Glimps/Glipmse9.jpg');"></div>
-  <div class="slide" style="background-image: url('assets/Glimps/Glipmse10.jpg');"></div>
-  <div class="slide" style="background-image: url('assets/Glimps/Glipmse12.jpg');"></div>
-  <div class="slide" style="background-image: url('assets/Glimps/Glipmse13.jpg');"></div>
-  <div class="slide" style="background-image: url('assets/Glimps/Glipmse14.jpg');"></div>
-  <div class="slide" style="background-image: url('assets/Glimps/Glipmse15.jpg');"></div>
-  <div class="slide" style="background-image: url('assets/Glimps/Glipmse16.jpg');"></div>
-  <div class="slide" style="background-image: url('assets/Glimps/Glipmse17.jpg');"></div>
+  <div class="slide active" style="background-image: url('assets/Glipmse1.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse2.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse3.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse4.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse5.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse6.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse7.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse8.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse9.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse10.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse11.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse12.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse13.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse14.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse15.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse16.jpg');"></div>
+  <div class="slide" style="background-image: url('assets/Glipmse17.jpg');"></div>
 
 <!-- Add more slides here -->
 
   <button class="prev">&#10094;</button>
   <button class="next">&#10095;</button>
 </div>
-
-<script>
-let currentSlide = 0;
-const slides = document.querySelectorAll('.our-story-slideshow .slide');
-const totalSlides = slides.length;
-
-function showSlide(index) {
-  slides.forEach((slide, i) => {
-    slide.classList.remove('active');
-    if(i === index) slide.classList.add('active');
-  });
-}
-
-document.querySelector('.our-story-slideshow .next').addEventListener('click', () => {
-  currentSlide = (currentSlide + 1) % totalSlides;
-  showSlide(currentSlide);
-});
-
-document.querySelector('.our-story-slideshow .prev').addEventListener('click', () => {
-  currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-  showSlide(currentSlide);
-});
-
-// Auto-slide every 5 seconds
-setInterval(() => {
-  currentSlide = (currentSlide + 1) % totalSlides;
-  showSlide(currentSlide);
-}, 5000);
-
-// Optional: subtle parallax effect on scroll
-window.addEventListener('scroll', () => {
-  const slideshow = document.querySelector('.our-story-slideshow');
-  const offset = window.scrollY;
-  slideshow.querySelectorAll('.slide').forEach(slide => {
-    slide.style.transform = `translateY(${offset * 0.05}px) scale(${slide.classList.contains('active') ? 1 : 1.05})`;
-  });
-});
-</script>
-
 
 
 
@@ -426,7 +391,7 @@ window.addEventListener('scroll', () => {
           <div class="p-body"><h3>Mango Pickle</h3><a class="btn primary" href="https://www.amazon.in/dp/B0DTPB263N" target="_blank">Buy Now</a></div>
         </article>
         <article class="card p-card">
-          <figure><img src="assets/products/Amla.png" alt="Amla Pickle"/></figure>
+          <figure><img src="assets/Amla Pickle.png" alt="Amla Pickle"/></figure>
           <div class="p-body"><h3>Amla Pickle</h3><a class="btn primary" href="https://www.amazon.in/dp/B0FGHNJG7M" target="_blank">Buy Now</a></div>
         </article>
         <article class="card p-card">
@@ -434,23 +399,27 @@ window.addEventListener('scroll', () => {
           <div class="p-body"><h3>Green Chilly</h3><a class="btn primary" href="https://www.amazon.in/dp/B0DTQBGQ2X" target="_blank">Buy Now</a></div>
         </article>
         <article class="card p-card">
+          <figure><img src="assets/Green Chilly & Ginger.png" alt="Green Chilly & Ginger"/></figure>
+          <div class="p-body"><h3>Green Chilly & Ginger</h3><a class="btn primary" href="https://www.amazon.in/stores/page/B697823D-DD8A-4C5C-95BE-07A9F9FEC149" target="_blank">Buy Now</a>	</div>
+        </article>
+        <article class="card p-card">
           <figure><img src="assets/Lemon Pickle.png" alt="Lemon Pickle"/></figure>
           <div class="p-body"><h3>Lemon Pickle</h3><a class="btn primary" href="https://www.amazon.in/stores/page/B697823D-DD8A-4C5C-95BE-07A9F9FEC149" target="_blank">Buy Now</a></div>
         </article>
         <article class="card p-card">
-          <figure><img src="assets/products/Galgal.png" alt="Mountain Lemon (Gagal)"/></figure>
+          <figure><img src="assets/Mountain Lemon (Gagal).png" alt="Mountain Lemon (Gagal)"/></figure>
           <div class="p-body"><h3>Mountain Lemon (Gagal)</h3><a class="btn primary" href="https://www.amazon.in/dp/B0DVCFW488" target="_blank">Buy Now</a></div>
         </article>
         <article class="card p-card">
-          <figure><img src="assets/products/Kachnar.png" alt="Kachnar Pickle"/></figure>
+          <figure><img src="assets/Kachnar Pickle.png" alt="Kachnar Pickle"/></figure>
           <div class="p-body"><h3>Kachnar Pickle</h3><a class="btn primary" href="https://www.amazon.in/dp/B0FGHP7W38" target="_blank">Buy Now</a></div>
         </article>
         <article class="card p-card">
-          <figure><img src="assets/products/Bharwa Lal Mirch.png" alt="Bharwa Lal Mirch"/></figure>
+          <figure><img src="assets/Bharwa Lal Mirch.png" alt="Bharwa Lal Mirch"/></figure>
           <div class="p-body"><h3>Bharwa Lal Mirch</h3><a class="btn primary" href="https://www.amazon.in/dp/B0DZ5ZMWVQ" target="_blank">Buy Now</a></div>
         </article>
         <article class="card p-card">
-          <figure><img src="assets/products/Bharwa Hari Mirch.png" alt="Bharwa Hari Mirch"/></figure>
+          <figure><img src="assets/Bharwa Hari Mirch.png" alt="Bharwa Hari Mirch"/></figure>
           <div class="p-body"><h3>Bharwa Hari Mirch</h3><a class="btn primary" href="https://www.amazon.in/dp/B0DZ5Q9HRW" target="_blank">Buy Now</a></div>
         </article>
         <article class="card p-card">
@@ -461,11 +430,6 @@ window.addEventListener('scroll', () => {
           <figure><img src="assets/Himachali Chukh.png" alt="Mix Vegetable Pickle"/></figure>
           <div class="p-body"><h3>Mix Vegetable Pickle</h3><a class="btn primary" href="https://www.amazon.in/stores/page/B697823D-DD8A-4C5C-95BE-07A9F9FEC149" target="_blank">Coming Soon</a></div>
         </article>
-		<article class="card p-card">
-          <figure><img src="assets/Green Chilly & Ginger.png" alt="Green Chilly & Ginger"/></figure>
-          <div class="p-body"><h3>Green Chilly & Ginger</h3><a class="btn primary" href="https://www.amazon.in/stores/page/B697823D-DD8A-4C5C-95BE-07A9F9FEC149" target="_blank">Coming Soon</a>	</div>
-        </article>
-
       </div>
     </section>
 
@@ -520,10 +484,10 @@ window.addEventListener('scroll', () => {
   </div>
 </section>
 
-    <!-- ===================== REVIEWS (CAROUSEL)===================== -->
-<!-- =====================
-     REVIEWS SECTION
-===================== -->
+
+
+
+<!-- =====================REVIEWS SECTION===================== -->
 <section id="reviews">
       <h2 class="section">What customers say about us</h2>
       <div class="card" style="padding:0px">
@@ -661,7 +625,7 @@ window.addEventListener('scroll', () => {
 .reviews-scroll {
   display: flex;
   flex-direction: column;
-  animation: scrollUp 15s linear infinite;
+  animation: scrollUp 10s linear infinite;
 }
 
 .reviews-scroll:hover {
@@ -795,7 +759,7 @@ form.addEventListener('submit', function(e) {
     <div class="container foot">
       <div>
         <strong>Shimla Spice</strong>
-        <p class="muted" style="margin:8px 0 0">Jai Maa Kamaksha Foods (PROP)</p>
+        <p class="muted" style="margin:8px 0 0">Jai Maa Kamaksha — Raksha karna, Kalyan karna. 🙏</p>
         <p class="copyright">© <span id="year"></span> Shimla Spice. All rights reserved.</p>
       </div>
       <div>
@@ -809,22 +773,25 @@ form.addEventListener('submit', function(e) {
       <div>
         <strong>Reach Us</strong>
         <ul style="list-style:none;padding:0;margin:8px 0 0;line-height:2">
-          <li>Email: <a href="mailto:hello@shimlaspice.in">hello.shimlaspice@gmail.com</a></li>
-          <li>Instagram: <a href="https://www.instagram.com/shimla_spice/>@shimla_spice</a></li>
+          <li>Email: <a href="mailto:hello@shimlaspice.in">hello@shimlaspice.in</a></li>
+          <li>Instagram: <a href="https://www.instagram.com/shimla_spice/" target="_blank" rel="noopener noreferrer">@shimla_spice</li>
         </ul>
       </div>
     </div>
   </footer>
 
   <script>
-    // ===================== UTIL & STATE =====================
+
+// ===================== UTIL & STATE =====================
     const $ = sel => document.querySelector(sel);
     const $$ = sel => [...document.querySelectorAll(sel)];
 
-    // Year
+
+// Year
     $('#year').textContent = new Date().getFullYear();
 
-    // Mobile menu toggle (simple)
+
+// Mobile menu toggle (simple)
     function toggleMenu(){
       const nav = document.querySelector('.menu');
       const visible = getComputedStyle(nav).display !== 'none';
@@ -832,36 +799,9 @@ form.addEventListener('submit', function(e) {
   	if(window.innerWidth > 640) nav.style.display = 'flex';
 	});
 
-    // Card flip (for now, simple text swap)
-    function flipCard(el){
-      el.classList.toggle('flipped');
-      if(!el.dataset.orig){
-        el.dataset.orig = el.querySelector('.p-body').innerHTML;
-      }
-      const showingDetails = el.classList.contains('flipped');
-      el.querySelector('.p-body').innerHTML = showingDetails
-        ? `<h3>Ingredients & Notes</h3><ul style="line-height:1.9; padding-left:18px"><li>No artificial preservatives</li><li>Cold-pressed oil</li><li>Hand-ground masalas</li></ul><div style="height:8px"></div><a class='btn primary' href='#contact'>Enquire</a>`
-        : el.dataset.orig;
-    }
 
-    // Jar reveal toggle
-    function toggleJar(card){ card.classList.toggle('active'); }
 
-    // Recipe Roulette
-    const ideas = [
-      'Chukh + rajma-chawal = soul food',
-      'Mango pickle tadka in dal = wow',
-      'Lal Bharwa crumbled over khichdi',
-      'Chukh + butter on hot toast',
-      'Mango pickle with paratha + curd',
-      'Add a spoon to poha for zing'
-    ];
-    function recipeRoulette(){
-      const msg = ideas[Math.floor(Math.random()*ideas.length)];
-      $('#roulette').textContent = '→ ' + msg;
-    }
-
-    // ===================== CAROUSEL =====================
+// ===================== CAROUSEL =====================
     const slides = $('#slides');
     const slideCount = slides.children.length;
     let i = 0;
@@ -880,6 +820,46 @@ form.addEventListener('submit', function(e) {
     setInterval(()=>goTo(i+1), 4000);
 
 
-    </script>
-  </body>
+// ===================== Slideshow =====================
+let currentSlide = 0;
+const slides = document.querySelectorAll('.our-story-slideshow .slide');
+const totalSlides = slides.length;
+
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.remove('active');
+    if(i === index) slide.classList.add('active');
+  });
+}
+
+document.querySelector('.our-story-slideshow .next').addEventListener('click', () => {
+  currentSlide = (currentSlide + 1) % totalSlides;
+  showSlide(currentSlide);
+});
+
+document.querySelector('.our-story-slideshow .prev').addEventListener('click', () => {
+  currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+  showSlide(currentSlide);
+});
+
+// Auto-slide every 5 seconds
+setInterval(() => {
+  currentSlide = (currentSlide + 1) % totalSlides;
+  showSlide(currentSlide);
+}, 5000);
+
+// Optional: subtle parallax effect on scroll
+window.addEventListener('scroll', () => {
+  const slideshow = document.querySelector('.our-story-slideshow');
+  const offset = window.scrollY;
+  slideshow.querySelectorAll('.slide').forEach(slide => {
+    slide.style.transform = `translateY(${offset * 0.05}px) scale(${slide.classList.contains('active') ? 1 : 1.05})`;
+  });
+});
+
+
+
+ </script>
+
+ </body>
 </html>
