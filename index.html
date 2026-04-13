@@ -1,862 +1,1645 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Shimla Spice</title>
-  <meta name="description" content="Shimla Spice — Homemade goodness in every jar." />
+  <title>Shimla Spice — Homemade Goodness in Every Jar</title>
+  <meta name="description" content="Authentic Himachali pickles crafted in small batches. No artificial flavours, no preservatives." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
   <style>
-    section {
-      scroll-margin-top: 80px;
-	}
-    /* =====================
-       THEME & RESETS
-       ===================== */
-    :root{
-      --bg: #fff8ef;          /* paper */
-      --ink: #1f2937;         /* text */
-      --muted:#6b7280;        /* helper text */
-      --brand:#ec4c24;        /* primary (chilli red) */
-      --brand-2:#ffb703;      /* turmeric */
-      --brand-3:#34d399;      /* coriander green */
-      --brand-4:#8b5cf6;      /* vibrant accent */
-      --card:#ffffff;         /* card */
-      --ring:#ffd9c9;         /* soft border */
-      --radius: 18px;         /* corners */
-      --shadow: 0 10px 30px rgba(0,0,0,.10);
-      --shadow-soft: 0 6px 16px rgba(0,0,0,.08);
+    :root {
+      --saffron: #E8640A;
+      --saffron-light: #FDECD9;
+      --saffron-dark: #B84D06;
+      --turmeric: #F0A500;
+      --turmeric-light: #FEF3D0;
+      --forest: #2D6A4F;
+      --forest-light: #D8F3E0;
+      --cream: #FDF6EC;
+      --cream-dark: #F5E6CA;
+      --ink: #1A1208;
+      --ink-muted: #5C4A2A;
+      --ink-soft: #9C7E54;
+      --white: #FFFFFF;
+      --card-bg: #FFFCF7;
+      --border: rgba(232, 100, 10, 0.15);
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+      --shadow-sm: 0 2px 12px rgba(30,15,0,0.08);
+      --shadow-md: 0 8px 32px rgba(30,15,0,0.12);
+      --shadow-lg: 0 20px 60px rgba(30,15,0,0.16);
     }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; color:var(--ink); background:var(--bg)}
-    img{max-width:100%;display:block}
-    a{color:inherit;text-decoration:none}
-    .container{max-width:1150px;margin-inline:auto;padding:6px}
-    .card{background:var(--card);border:1px solid var(--ring);border-radius:var(--radius);box-shadow:var(--shadow);}
-    .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:12px;font-weight:700;cursor:pointer;user-select:none;transition:.2s transform,.2s filter}
-    .btn:active{transform:translateY(1px)}
-    .btn.primary{background:var(--brand);color:white}
-    .btn.primary:hover{filter:brightness(1.05)}
-    .btn.ghost{background:white;border:1px solid #e5e7eb;color:#111827}
-    .btn.ghost:hover{background:#f9fafb}
-    .muted{color:var(--muted)}
 
-    /* =====================
-       STICKY NAVBAR
-       ===================== */
-    header{position:sticky;top:0;z-index:50;background:rgba(255,248,239,.75);backdrop-filter:blur(8px) saturate(1.2);border-bottom:1px solid #ffe9d9}
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:900}
-    .brand-logo{width:44px;height:44px;border-radius:40px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center;color:white;box-shadow:var(--     shadow-soft)}
-    .brand small{display:block;font-weight:700;color:var(--muted);font-size:11px;letter-spacing:.4px}
-    .menu{display:flex;gap:18px;align-items:center}
-    .menu a{padding:15px 12px;border-radius:12px;font-weight:700;color:#374151}
-    .menu a:hover{background:#fff}
-    .menu-toggle{display:none}
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* =====================
-       FLOATY BACKGROUND ORNAMENTS
-       ===================== */
-    .floaty{
-      position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.25
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
     }
-    .blob{
-	position:absolute;
-     	width:220px;
-	height:220px;
-	border-radius:50%;
-	filter:blur(20px);
-	animation:float 2s ease-in-out infinite
-	}
-    .b1{background:var(--brand);top:5%;left:6%;right:8%;animation-duration:12s}
-    .b2{background:var(--brand-2);top:20%;right:8%;animation-duration:16s}
-    .b3{background:var(--brand-3);bottom:8%;left:14%;animation-duration:7s}
-    .b4{background:var(--brand-4);bottom:12%;right:22%;animation-duration:20s}
-	@keyframes float {
-	  0%, 100% { 
-	    transform: translate(0, 0); 
-		  }
-	  25% { 
-	    transform: translate(120px, -130px); 
-	     }
-	  50% { 
-	    transform: translate(10, -160px); 
-	      }
-	  75% { 
-	    transform: translate(-120px, -230px); 
-  	      }
-		}
 
-    /* =====================
-       HERO SECTION
-       ===================== */
-    .hero{position:relative;z-index:1;display:grid;gap:26px;grid-template-columns:1.05fr .95fr;align-items:center}
-    .hero-card{padding:28px}
-    .tag{display:inline-flex;align-items:center;gap:8px;background:#fff1e9;border:1px solid #ffd7c7;color:#7a2a13;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.6px}
-    .title{font-size:clamp(28px,5vw,48px);line-height:1.05;margin:12px 0 8px 0}
-    .sub{font-size:18px;color:var(--muted)}
-    .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
-    .sparkle-wrap{position:relative}
-    .sparkle{position:absolute;inset:12px;border-radius:var(--radius);background:repeating-conic-gradient(from 0deg, rgba(255,255,255,.2) 0 20deg, rgba(255,255,255,0) 20deg 40deg);animation:spin 18s linear infinite}
-    @keyframes spin{to{transform:rotate(1turn)}}
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
 
-    /* =====================
-       TRIPLE PRODUCT CARDS
-       ===================== */
-    section{margin-top:42px}
-    h2.section{font-size:clamp(24px,3.6vw,32px);margin:0 0 8px 0}
-    .cards{display:grid;gap:18px;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr))}
-    .p-card{overflow:hidden;position:relative}
-    .p-card figure{aspect-ratio:4/3;overflow:hidden}
-    .p-card figure img{width:100%;height:100%;object-fit:contain;transition:transform .5s}
-    .p-card:hover figure img{transform:scale(1.07)}
-    .p-body{padding:16px}
-    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-    .chip{font-size:12px;background:#f3f4f6;padding:6px 10px;border-radius:999px;display:inline-block}
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
 
-    /* =====================
-       our-story-slideshow
-       ===================== */
-.our-story-slideshow {
-  position: relative;
-  width: 100%;
-  max-width: 1200px; /* apne hisaab se adjust karo */
-  height: 390px;     /* slideshow ki fixed height */
-  margin: auto;
-  overflow: hidden;
-  border-radius: 15px; /* thoda premium look */
-}
+    /* ── TEXTURE BACKGROUND ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 15% 20%, rgba(232,100,10,0.06) 0%, transparent 50%),
+        radial-gradient(circle at 85% 75%, rgba(240,165,0,0.07) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(45,106,79,0.04) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
 
-.our-story-slideshow .slide {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-size: cover; /* image box fill karegi */
-  background-position: center; /* center se adjust hogi */
-  background-repeat: no-repeat;
-  opacity: 0;
-  transition: opacity 0.8s ease-in-out;
-}
+    /* ── NAVBAR ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(253,246,236,0.88);
+      backdrop-filter: blur(16px) saturate(1.6);
+      border-bottom: 1px solid var(--border);
+    }
 
-.our-story-slideshow .slide.active {
-  opacity: 1;
-  transform: scale(1);
-}
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      gap: 16px;
+    }
 
-.our-story-slideshow button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0,0,0,0.3);
-  color: white;
-  border: none;
-  font-size: 26px;
-  padding: 12px;
-  cursor: pointer;
-  border-radius: 50%;
-  z-index: 2;
-  opacity: 0; /* hidden by default */
-  transition: background-color 0.3s, opacity 0.3s;
-}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
 
-.our-story-slideshow:hover button {
-  opacity: 1; /* show on hover */
-}
-
-.prev { left: 15px; }
-.next { right: 15px; }
-
-.our-story-slideshow button:hover {
-  background-color: rgba(0,0,0,0.6);
-}
-
-/* Benefits Section Styling */
-.benefits-container {
-  max-width: 1500px;
-  margin: 120 auto;
-  padding: 0px 0px;
-  text-align: Left;
-}
-
-.benefits-title {
-  font-size: 2rem;
-  margin-bottom: 30px;
-  color: #333;
-}
-
-.benefits-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-}
-
-.benefit-card {
-  background: #fff8ef;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.benefit-card h3 {
-  margin-bottom: 10px;
-  font-size: 1.25rem;
-  color: #d35400;
-}
-
-.benefit-card p {
-  font-size: 1.25rem;
-  color: #555;
-  line-height: 1.5;
-}
-
-.benefit-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
-
-
-
-
-    /* =====================
-       TESTIMONIALS CAROUSEL
-       ===================== */
-  
-   .reviews-section {
-      background: #fffdf9;
-      padding: 40px 0;
+    .brand-logo-wrap {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
       overflow: hidden;
+      border: 2px solid var(--saffron-light);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .brand-logo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand-text strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--saffron-dark);
+      letter-spacing: -0.3px;
+    }
+
+    .brand-text small {
+      display: block;
+      font-size: 11px;
+      color: var(--ink-soft);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-links a {
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink-muted);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .nav-links a:hover {
+      background: var(--saffron-light);
+      color: var(--saffron-dark);
+    }
+
+    .nav-cta {
+      background: var(--saffron);
+      color: white !important;
+      border-radius: var(--radius-sm) !important;
+      padding: 9px 20px !important;
+      font-weight: 600 !important;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--saffron-dark) !important;
+      transform: translateY(-1px);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 8px 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink-muted);
+      cursor: pointer;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      padding: 72px 0 80px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--turmeric-light);
+      border: 1px solid rgba(240,165,0,0.3);
+      color: #7A5200;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--turmeric);
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 5.5vw, 62px);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -1px;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--saffron);
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--ink-muted);
+      max-width: 480px;
+      margin-bottom: 36px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--saffron);
+      color: white;
+      padding: 14px 28px;
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      font-weight: 600;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 16px rgba(232,100,10,0.3);
+    }
+
+    .btn-primary:hover {
+      background: var(--saffron-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(232,100,10,0.4);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      color: var(--ink-muted);
+      padding: 14px 28px;
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      font-weight: 500;
+      border: 1.5px solid var(--border);
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    }
+
+    .btn-secondary:hover {
+      background: var(--saffron-light);
+      border-color: var(--saffron);
+      color: var(--saffron-dark);
+      transform: translateY(-2px);
+    }
+
+    .hero-trust {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .trust-avatars {
+      display: flex;
+    }
+
+    .trust-avatars span {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 2px solid var(--white);
+      background: linear-gradient(135deg, var(--saffron-light), var(--turmeric-light));
+      margin-left: -8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+    }
+
+    .trust-avatars span:first-child { margin-left: 0; }
+
+    .trust-text {
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.4;
+    }
+
+    .trust-text strong {
+      color: var(--ink);
+      display: block;
+      font-weight: 600;
+    }
+
+    .hero-visual {
       position: relative;
     }
 
-    .reviews-container {
+    .hero-image-frame {
+      position: relative;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      aspect-ratio: 4/5;
+      background: var(--cream-dark);
+    }
+
+    .hero-image-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      right: 24px;
+      background: rgba(253,246,236,0.92);
+      backdrop-filter: blur(12px);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .badge-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background: var(--saffron);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .badge-text strong {
+      display: block;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--ink);
+    }
+
+    .badge-text span {
+      font-size: 12px;
+      color: var(--ink-soft);
+    }
+
+    .floating-pill {
+      position: absolute;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--forest);
+      box-shadow: var(--shadow-sm);
+      white-space: nowrap;
+    }
+
+    .pill-1 {
+      top: -16px;
+      right: -16px;
+      background: var(--forest-light);
+      border-color: rgba(45,106,79,0.2);
+      animation: floatY 4s ease-in-out infinite;
+    }
+
+    .pill-2 {
+      top: 40%;
+      right: -24px;
+      color: var(--saffron-dark);
+      background: var(--saffron-light);
+      border-color: rgba(232,100,10,0.2);
+      animation: floatY 5s ease-in-out infinite 1s;
+    }
+
+    @keyframes floatY {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* ── SECTION COMMON ── */
+    section {
+      position: relative;
+      z-index: 1;
+      scroll-margin-top: 80px;
+      padding: 80px 0;
+    }
+
+    .section-header {
+      margin-bottom: 48px;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--saffron);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      color: var(--ink);
+    }
+
+    .section-sub {
+      margin-top: 12px;
+      font-size: 17px;
+      color: var(--ink-soft);
+      max-width: 560px;
+      line-height: 1.6;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-story {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .about-story p {
+      font-size: 17px;
+      line-height: 1.75;
+      color: var(--ink-muted);
+    }
+
+    .about-story blockquote {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-style: italic;
+      color: var(--saffron);
+      border-left: 3px solid var(--saffron);
+      padding-left: 20px;
+      margin: 24px 0;
+      line-height: 1.5;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 28px 24px;
+      text-align: center;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .stat-icon {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--saffron);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--ink-soft);
+      margin-top: 6px;
+      font-weight: 500;
+    }
+
+    /* ── SLIDESHOW ── */
+    .slideshow-section {
+      background: var(--ink);
+      padding: 80px 0;
+    }
+
+    .slideshow-wrapper {
+      position: relative;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      height: 420px;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 0.9s ease;
+    }
+
+    .slide.active { opacity: 1; }
+
+    .slideshow-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(26,18,8,0.6) 0%, transparent 60%);
+      z-index: 1;
+    }
+
+    .slideshow-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 2;
+      padding: 40px 48px;
+    }
+
+    .slide-counter {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .slide-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: white;
+      font-weight: 700;
+    }
+
+    .slide-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 3;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 20px;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .slide-nav:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-50%) scale(1.05);
+    }
+
+    .slide-prev { left: 24px; }
+    .slide-next { right: 24px; }
+
+    .slide-dots {
+      position: absolute;
+      bottom: 24px;
+      right: 48px;
+      z-index: 3;
+      display: flex;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .dot.active {
+      background: var(--turmeric);
+      transform: scale(1.3);
+    }
+
+    /* ── PRODUCTS ── */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .product-card:hover .product-img img {
+      transform: scale(1.06);
+    }
+
+    .product-img {
+      aspect-ratio: 1;
+      overflow: hidden;
+      background: var(--cream-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .product-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform 0.5s ease;
+      padding: 12px;
+    }
+
+    .coming-soon-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: var(--turmeric);
+      color: #5A3A00;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .product-body {
+      padding: 18px 20px 20px;
+    }
+
+    .product-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .btn-buy {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--saffron);
+      color: white;
+      padding: 9px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      transition: background 0.2s, transform 0.15s;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .btn-buy:hover {
+      background: var(--saffron-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-buy-ghost {
+      background: transparent;
+      color: var(--ink-soft);
+      border: 1.5px solid var(--border);
+    }
+
+    .btn-buy-ghost:hover {
+      background: var(--saffron-light);
+      border-color: var(--saffron);
+      color: var(--saffron-dark);
+    }
+
+    /* ── BENEFITS ── */
+    .benefits-section {
+      background: var(--ink);
+      border-radius: var(--radius-xl);
+      padding: 64px;
+      margin: 0 24px;
+    }
+
+    .benefits-section .section-label {
+      color: var(--turmeric);
+    }
+
+    .benefits-section .section-title {
+      color: var(--white);
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .benefit-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-md);
+      padding: 28px 24px;
+      transition: background 0.25s, transform 0.25s;
+    }
+
+    .benefit-card:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-4px);
+    }
+
+    .benefit-emoji {
+      font-size: 30px;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .benefit-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    .benefit-card p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+    }
+
+    /* ── REVIEWS ── */
+    .reviews-wrapper {
+      height: 280px;
+      overflow: hidden;
+      position: relative;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+    }
+
+    .reviews-wrapper::before,
+    .reviews-wrapper::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 80px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .reviews-wrapper::before {
+      top: 0;
+      background: linear-gradient(to bottom, var(--card-bg), transparent);
+    }
+
+    .reviews-wrapper::after {
+      bottom: 0;
+      background: linear-gradient(to top, var(--card-bg), transparent);
+    }
+
+    .reviews-scroll {
       display: flex;
       flex-direction: column;
-      animation: scrollUp 10s linear infinite;
+      animation: scrollUp 20s linear infinite;
+      padding: 20px;
+      gap: 12px;
     }
 
-    .reviews-container:hover {
-      animation-play-state: paused;
-    }
+    .reviews-scroll:hover { animation-play-state: paused; }
 
-    .review {
-      display: flex;
-      justify-content: center;
-      margin: 20px 0;
+    @keyframes scrollUp {
+      0%   { transform: translateY(0); }
+      100% { transform: translateY(-50%); }
     }
 
     .review img {
-      max-width: 500px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border-radius: var(--radius-sm);
+      max-width: 100%;
+      height: auto;
+      border: 1px solid var(--border);
     }
 
-    @keyframes scrollUp {
-      0% { transform: translateY(100%); }
-      100% { transform: translateY(-100%); }
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 48px;
+      align-items: start;
     }
-    /* =====================
-       CONTACT
-       ===================== */
-    form label{font-weight:700}
-    input,textarea{width:100%;padding:12px;border:1px solid #e5e7eb;border-radius:12px;margin-top:6px}
 
-    /* =====================
-       FOOTER
-       ===================== */
-    footer{margin-top:64px;border-top:1px solid #ffe9d9}
-    .foot{display:grid;gap:26px;grid-template-columns:2fr 1fr 1fr}
-    .copyright{color:var(--muted);font-size:14px;margin-top:10px}
-
-    /* =====================
-       RESPONSIVE
-       ===================== */
-    @media (max-width:980px){
-      .hero{grid-template-columns:1fr}
-      .cards{grid-template-columns:2fr 2fr}
-      .benefits{grid-template-columns:1fr 1fr}
+    .contact-info {
+      background: var(--saffron);
+      border-radius: var(--radius-lg);
+      padding: 48px 40px;
+      color: white;
+      position: relative;
+      overflow: hidden;
     }
-    @media (max-width:640px){
-      .menu{display:none}
-      .menu-toggle{display:inline-flex}
-      .cards,.benefits{grid-template-columns:1fr}
-      .foot{grid-template-columns:1fr}
+
+    .contact-info::before {
+      content: '🫙';
+      position: absolute;
+      bottom: -20px;
+      right: -10px;
+      font-size: 120px;
+      opacity: 0.15;
+    }
+
+    .contact-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .contact-info p {
+      font-size: 15px;
+      opacity: 0.85;
+      line-height: 1.65;
+      margin-bottom: 32px;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .contact-detail-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background: rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .contact-detail-text strong {
+      display: block;
+      font-size: 13px;
+      opacity: 0.7;
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .contact-detail-text span {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .contact-form-wrap {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-muted);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      color: var(--ink);
+      background: var(--white);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--saffron);
+      box-shadow: 0 0 0 3px rgba(232,100,10,0.1);
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    #formMessage {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--forest);
+      margin-top: 12px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      margin-top: 80px;
+      background: var(--ink);
+      color: rgba(255,255,255,0.6);
+      padding: 60px 0 32px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    .footer-brand strong {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: white;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .footer-brand p {
+      font-size: 14px;
+      line-height: 1.7;
+      max-width: 280px;
+    }
+
+    .footer-col h4 {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-col ul li a {
+      color: rgba(255,255,255,0.65);
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--turmeric);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .footer-blessing {
+      color: var(--turmeric);
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; gap: 40px; padding: 48px 0 60px; }
+      .hero-visual { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .benefits-section { padding: 48px 32px; }
+      .benefits-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .menu-toggle { display: inline-flex; }
+      .products-grid { grid-template-columns: 1fr 1fr; }
+      .benefits-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+      .benefits-section { margin: 0; border-radius: var(--radius-lg); padding: 40px 24px; }
+      .about-stats { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 400px) {
+      .products-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── MOBILE MENU ── */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(26,18,8,0.6);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+    }
+
+    .mobile-nav.open { display: flex; }
+
+    .mobile-nav-panel {
+      background: var(--cream);
+      width: 280px;
+      height: 100%;
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .mobile-nav-panel a {
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--ink-muted);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .mobile-nav-panel a:hover {
+      background: var(--saffron-light);
+      color: var(--saffron-dark);
+    }
+
+    .mobile-close {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--ink-soft);
+      margin-bottom: 16px;
+      align-self: flex-end;
+    }
+
+    /* ── FADE IN ON SCROLL ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
     }
   </style>
 </head>
-
 <body>
-  <!-- FLOATY ORNAMENTS -->
-  <div class="floaty">
-    <div class="blob b1"></div>
-    <div class="blob b2"></div>
-    <div class="blob b3"></div>
-    <div class="blob b4"></div>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav" onclick="closeMobileNav(event)">
+  <div class="mobile-nav-panel">
+    <button class="mobile-close" onclick="toggleMobileNav()">✕</button>
+    <a href="#about" onclick="toggleMobileNav()">About</a>
+    <a href="#products" onclick="toggleMobileNav()">Products</a>
+    <a href="#benefits" onclick="toggleMobileNav()">Benefits</a>
+    <a href="#reviews" onclick="toggleMobileNav()">Reviews</a>
+    <a href="#contact" onclick="toggleMobileNav()">Contact</a>
+    <a href="https://www.amazon.in/stores/page/B697823D-DD8A-4C5C-95BE-07A9F9FEC149" target="_blank" class="btn-primary" style="margin-top:12px; border-radius:8px;">Shop on Amazon 🛒</a>
   </div>
-
-  <!-- NAVBAR -->
-  <header>
-    <div class="container nav">
-      <a class="brand" href="#home">
-        <img src="assets/SS_Logo.png" alt="Shimla Spice" class="brand-logo" />
-        <span>
-          Shimla Spice
-          <small>Homemade Goodness in Every Jar</small>
-        </span>
-      </a>
-	
-      <nav class="menu">
-        <a href="#about">About</a>
-        <a href="#products">Products</a>
-        <a href="#benefits">Benefits</a>
-        <a href="#reviews">Reviews</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <button class="btn ghost menu-toggle" onclick="toggleMenu()">Menu</button>
-    </div>
-  </header>
-
-  <main id="home" class="container" style="position:relative;z-index:1">
-    
-	<!-- HERO -->
-    <section class="hero" style="padding-top:20px;">
-      <div class="card hero-card">
-        <span class="tag">Homemade goodness in every jar</span>
-        <h1 class="title">Not just pickles, it’s love, legacy, and Himachal in a jar.🍽️</h1>
-        <p class="sub">Authentic Himachali pickles crafted in small batches - No artificial flavours, no preservatives.</p>
-        <div class="hero-cta">
-          <a class="btn primary" href="#products">Chalo, barni kholte hain🍯✨</a>
-          <a class="btn ghost" href="#reviews">Pehle reviews dekh lo… phir barni khud bula legi 🍯</a>
-        </div>
-      </div>
-      <div class="sparkle-wrap card" style="padding:0;overflow:hidden">
-        <img alt="Colourful jars" src="assets/Hero2.jpeg" />
-        <div class="sparkle" aria-hidden="true"></div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" style="scroll-margin-top:70px; margin-bottom:15px;">
-  	<h2 class="section" style="font-size:26px; margin-bottom:15px;">Our Story</h2>
-  	<div class="card" style="padding:22px; background:#fffaf5; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
-    	<p style="font-size:18px; line-height:1.6; color:#444;"> Shimla Spice was born in our family kitchen, tucked away in the hills of Himachal. What began as small batches of pickles for loved ones soon turned into jars of stories worth sharing. Each recipe carries the taste of our traditions, the patience of slow cooking, and the warmth of home. For us, it’s not just about pickles it’s about bottling memories, so every spoonful feels like family sitting across the table.💛
-    </p>
-    </div>
-    </section>
-
-<!-- OUR Story Premium Slideshow -->
-    
-	<div>
-    	<h2 class="section" style="font-size:26px; margin-bottom:5px;">A Taste of Culture, A Glimpse of Home</h2>
-    	</div>
-
-  <div class="our-story-slideshow" style="padding:22px; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
-  <div class="slide active" style="background-image: url('assets/Glimps/Glipmse1.jpg');"></div>
-  <div class="slide" style="background-image: url('assets/Glimps/Glipmse2.jpg');"></div>
-  <div class="slide" style="background-image: url('assets/Glimps/Glipmse3.jpg');"></div>
-  <div class="slide" style="background-image: url('assets/Glimps/Glipmse4.jpg');"></div>
-  <div class="slide" style="background-image: url('assets/Glimps/Glipmse5.jpg');"></div>
-  <div class="slide" style="background-image: url('assets/Glimps/Glipmse8.jpg');"></div>
-  <div class="slide" style="background-image: url('assets/Glimps/Glipmse9.jpg');"></div>
-  <div class="slide" style="background-image: url('assets/Glimps/Glipmse10.jpg');"></div>
-  <div class="slide" style="background-image: url('assets/Glimps/Glipmse12.jpg');"></div>
-  <div class="slide" style="background-image: url('assets/Glimps/Glipmse13.jpg');"></div>
-  <div class="slide" style="background-image: url('assets/Glimps/Glipmse14.jpg');"></div>
-  <div class="slide" style="background-image: url('assets/Glimps/Glipmse15.jpg');"></div>
-  <div class="slide" style="background-image: url('assets/Glimps/Glipmse16.jpg');"></div>
-  <div class="slide" style="background-image: url('assets/Glimps/Glipmse17.jpg');"></div>
-
-<!-- Add more slides here -->
-
-  <button class="prev">&#10094;</button>
-  <button class="next">&#10095;</button>
 </div>
 
-
-
-    <!-- PRODUCTS -->
-    <section id="products">
-      <h2 class="section">Bestsellers</h2>
-      <div class="cards">
-        <!-- All 12 products -->
-        <article class="card p-card">
-          <figure><img src="assets/Himachali Chukh.png" alt="Himachali Chukh"/></figure>
-          <div class="p-body"><h3>Himachali Chukh</h3><a class="btn primary" href="https://www.amazon.in/dp/B0DS9J21ZF" target="_blank">Buy Now</a></div>
-        </article>
-        <article class="card p-card">
-          <figure><img src="assets/Mango Pickle.png" alt="Mango Pickle"/></figure>
-          <div class="p-body"><h3>Mango Pickle</h3><a class="btn primary" href="https://www.amazon.in/dp/B0DTPB263N" target="_blank">Buy Now</a></div>
-        </article>
-        <article class="card p-card">
-          <figure><img src="assets/Amla Pickle.png" alt="Amla Pickle"/></figure>
-          <div class="p-body"><h3>Amla Pickle</h3><a class="btn primary" href="https://www.amazon.in/dp/B0FGHNJG7M" target="_blank">Buy Now</a></div>
-        </article>
-        <article class="card p-card">
-          <figure><img src="assets/Green Chilly.png" alt="Green Chilly"/></figure>
-          <div class="p-body"><h3>Green Chilly</h3><a class="btn primary" href="https://www.amazon.in/dp/B0DTQBGQ2X" target="_blank">Buy Now</a></div>
-        </article>
-        <article class="card p-card">
-          <figure><img src="assets/Green Chilly & Ginger.png" alt="Green Chilly & Ginger"/></figure>
-          <div class="p-body"><h3>Green Chilly & Ginger</h3><a class="btn primary" href="https://www.amazon.in/stores/page/B697823D-DD8A-4C5C-95BE-07A9F9FEC149" target="_blank">Buy Now</a>	</div>
-        </article>
-        <article class="card p-card">
-          <figure><img src="assets/Lemon Pickle.png" alt="Lemon Pickle"/></figure>
-          <div class="p-body"><h3>Lemon Pickle</h3><a class="btn primary" href="https://www.amazon.in/stores/page/B697823D-DD8A-4C5C-95BE-07A9F9FEC149" target="_blank">Buy Now</a></div>
-        </article>
-        <article class="card p-card">
-          <figure><img src="assets/Mountain Lemon (Gagal).png" alt="Mountain Lemon (Gagal)"/></figure>
-          <div class="p-body"><h3>Mountain Lemon (Gagal)</h3><a class="btn primary" href="https://www.amazon.in/dp/B0DVCFW488" target="_blank">Buy Now</a></div>
-        </article>
-        <article class="card p-card">
-          <figure><img src="assets/Kachnar Pickle.png" alt="Kachnar Pickle"/></figure>
-          <div class="p-body"><h3>Kachnar Pickle</h3><a class="btn primary" href="https://www.amazon.in/dp/B0FGHP7W38" target="_blank">Buy Now</a></div>
-        </article>
-        <article class="card p-card">
-          <figure><img src="assets/Bharwa Lal Mirch.png" alt="Bharwa Lal Mirch"/></figure>
-          <div class="p-body"><h3>Bharwa Lal Mirch</h3><a class="btn primary" href="https://www.amazon.in/dp/B0DZ5ZMWVQ" target="_blank">Buy Now</a></div>
-        </article>
-        <article class="card p-card">
-          <figure><img src="assets/Bharwa Hari Mirch.png" alt="Bharwa Hari Mirch"/></figure>
-          <div class="p-body"><h3>Bharwa Hari Mirch</h3><a class="btn primary" href="https://www.amazon.in/dp/B0DZ5Q9HRW" target="_blank">Buy Now</a></div>
-        </article>
-        <article class="card p-card">
-          <figure><img src="assets/Himachali Chukh.png" alt="Garlic Pickle"/></figure>
-          <div class="p-body"><h3>Garlic Pickle</h3><a class="btn primary" href="https://www.amazon.in/stores/page/B697823D-DD8A-4C5C-95BE-07A9F9FEC149" target="_blank">Coming Soon</a></div>
-        </article>
-        <article class="card p-card">
-          <figure><img src="assets/Himachali Chukh.png" alt="Mix Vegetable Pickle"/></figure>
-          <div class="p-body"><h3>Mix Vegetable Pickle</h3><a class="btn primary" href="https://www.amazon.in/stores/page/B697823D-DD8A-4C5C-95BE-07A9F9FEC149" target="_blank">Coming Soon</a></div>
-        </article>
+<!-- NAVBAR -->
+<header>
+  <div class="container nav">
+    <a class="brand" href="#home">
+      <div class="brand-logo-wrap">
+        <img src="assets/SS_Logo.png" alt="Shimla Spice Logo" />
       </div>
-    </section>
+      <div class="brand-text">
+        <strong>Shimla Spice</strong>
+        <small>Homemade Goodness in Every Jar</small>
+      </div>
+    </a>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#products">Products</a>
+      <a href="#benefits">Benefits</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+      <a href="https://www.amazon.in/stores/page/B697823D-DD8A-4C5C-95BE-07A9F9FEC149" target="_blank" class="nav-cta">Shop Now 🛒</a>
+    </nav>
+    <button class="menu-toggle" onclick="toggleMobileNav()">Menu ☰</button>
+  </div>
+</header>
 
-
-<!-- Benefits Section -->	
-<section id="benefits" >
-  <div class="benefits-container">
-    <h2 class="benefits-title">Why do we need Pickles??</h2>
-    <div class="benefits-grid">
-
-      <div class="benefit-card">
-        <h3>Rich in Probiotics 🦠</h3>
-        <p>Naturally Fermented pickles contain natural probiotics that promote gut health and digestion.</p>
+<main id="home">
+  <!-- ── HERO ── -->
+  <div class="container">
+    <div class="hero">
+      <div class="hero-content">
+        <span class="hero-eyebrow">Straight from the Hills of Himachal Pradesh</span>
+        <h1>Not just pickles,<br>it's <em>love, legacy</em><br>in every jar.</h1>
+        <p class="hero-sub">Authentic Himachali pickles crafted in small batches — no artificial flavours, no preservatives. Just the pure taste of the mountains. 🏔️</p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#products">Explore Our Pickles 🫙</a>
+          <a class="btn-secondary" href="#reviews">Read Reviews ⭐</a>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-avatars">
+            <span>😊</span><span>😄</span><span>🥰</span><span>😍</span>
+          </div>
+          <div class="trust-text">
+            <strong>500+ Happy Customers</strong>
+            Loved across India on Amazon
+          </div>
+        </div>
       </div>
 
-      <div class="benefit-card">
-        <h3>Boosts Immunity 🛡️</h3>
-        <p>Spices, garlic, and ginger in pickles strengthen the body’s defense system. Packed with antioxidants and essential vitamins that strengthen your immune system.</p></div>
-
-      <div class="benefit-card">
-        <h3>Packed with Antioxidants✨</h3>
-        <p>Vegetables and spices fight free radicals, keeping you healthy and youthful.</p></div>
-
-      <div class="benefit-card">
-        <h3>Enhances Appetite 🍽️</h3>
-        <p>Tangy-sour taste stimulates taste buds and improves appetite.</p>
-      </div>
-
-      <div class="benefit-card">
-        <h3>Good for Heart ❤️</h3>
-        <p>Ingredients like garlic and mustard seeds support heart health.</p>
-      </div>
-
-      <div class="benefit-card">
-        <h3>Good for your Gut</h3>
-        <p>Homemade pickles are free from artificial colors and harmful preservatives.</p>
-      </div>
-
-      <div class="benefit-card">
-        <h3>Preserves Nutrients 🌱</h3>
-        <p>Seasonal veggies retain their vitamins and minerals for longer periods.</p></div>
-
-      <div class="benefit-card">
-        <h3>Aids in Hydration 💧</h3>
-        <p>Salt and electrolytes in pickles help maintain hydration, especially in summers.</p></div>
-
-      <div class="benefit-card">
-        <h3>Mood Booster 😋</h3>
-        <p>That burst of tangy flavor uplifts mood and adds joy to every meal.</p>
+      <div class="hero-visual">
+        <div class="hero-image-frame">
+          <img src="assets/Hero2.jpeg" alt="Shimla Spice jars" />
+        </div>
+        <span class="floating-pill pill-1">🌿 No Preservatives</span>
+        <span class="floating-pill pill-2">🏔️ Himachali Authentic</span>
+        <div class="hero-badge">
+          <div class="badge-icon">🫙</div>
+          <div class="badge-text">
+            <strong>Small Batch Crafted</strong>
+            <span>Made with love & tradition</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</section>
 
-
-
-
-<!-- =====================REVIEWS SECTION===================== -->
-<section id="reviews">
-      <h2 class="section">What customers say about us</h2>
-      <div class="card" style="padding:0px">
-  <div class="reviews-wrapper">	
-    <div class="reviews-scroll">
-      <!-- Review 1 -->
-      <div class="review">
-        <img src="assets/reviews/Review1.png" alt="Review 1">
-      </div>
-      <!-- Review 2 -->
-      <div class="review">
-        <img src="assets/reviews/Review2.png" alt="Review 2">
-      </div>
-      <!-- Review 3 -->
-      <div class="review">
-        <img src="assets/reviews/Review3.png" alt="Review 3">
-      </div>
-      <!-- Review 4 -->
-      <div class="review">
-        <img src="assets/reviews/Review4.png" alt="Review 4">
-      </div>
-      <!-- Review 5 -->
-      <div class="review">
-        <img src="assets/reviews/Review5.png" alt="Review 5">
-      </div>
-      <!-- Review 6 -->
-      <div class="review">
-        <img src="assets/reviews/Review6.png" alt="Review 6">
-      </div>
-      <!-- Review 7 -->
-      <div class="review">
-        <img src="assets/reviews/Review7.png" alt="Review 7">
-      </div>
-      <!-- Review 8 -->
-      <div class="review">
-        <img src="assets/reviews/Review8.png" alt="Review 8">
-      </div>      
-	      <!-- Review 9 -->
-      <div class="review">
-        <img src="assets/reviews/Review9.png" alt="Review 9">
-      </div>
-      <!-- Review 10 -->
-      <div class="review">
-        <img src="assets/reviews/Review10.png" alt="Review 10">
-      </div>
-      <!-- Review 11 -->
-      <div class="review">
-        <img src="assets/reviews/Review11.png" alt="Review 11">
-      </div>
-      <!-- Review 12 -->
-      <div class="review">
-        <img src="assets/reviews/Review12.png" alt="Review 12">
-      </div>
-		<!-- Duplicate Reviews for Infinite Effect -->
-
-      <!-- Review 1 -->
-      <div class="review">
-        <img src="assets/reviews/Review1.png" alt="Review 1">
-      </div>
-      <!-- Review 2 -->
-      <div class="review">
-        <img src="assets/reviews/Review2.png" alt="Review 2">
-      </div>
-      <!-- Review 3 -->
-      <div class="review">
-        <img src="assets/reviews/Review3.png" alt="Review 3">
-      </div>
-      <!-- Review 4 -->
-      <div class="review">
-        <img src="assets/reviews/Review4.png" alt="Review 4">
-      </div>
-      <!-- Review 5 -->
-      <div class="review">
-        <img src="assets/reviews/Review5.png" alt="Review 5">
-      </div>
-      <!-- Review 6 -->
-      <div class="review">
-        <img src="assets/reviews/Review6.png" alt="Review 6">
-      </div>
-      <!-- Review 7 -->
-      <div class="review">
-        <img src="assets/reviews/Review7.png" alt="Review 7">
-      </div>
-      <!-- Review 8 -->
-      <div class="review">
-        <img src="assets/reviews/Review8.png" alt="Review 8">
-      </div>      
-	      <!-- Review 9 -->
-      <div class="review">
-        <img src="assets/reviews/Review9.png" alt="Review 9">
-      </div>
-      <!-- Review 10 -->
-      <div class="review">
-        <img src="assets/reviews/Review10.png" alt="Review 10">
-      </div>
-      <!-- Review 11 -->
-      <div class="review">
-        <img src="assets/reviews/Review11.png" alt="Review 11">
-      </div>
-      <!-- Review 12 -->
-      <div class="review">
-        <img src="assets/reviews/Review12.png" alt="Review 12">
-      </div> 
-	</div>
-   </div>
- </div>
-</section>
-
-
-<style>
-
-/* ===================== REVIEWS SECTION STYLE===================== */
-.reviews-section {
-  background: #fffaf5;
-  padding: 0px 10px;
-  border-radius:12px;
-  text-align: Left;
-  position: relative;
-  overflow: hidden;
-}
-
-.reviews-title {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 0px;
-  color: #333;
-}
-
-.reviews-wrapper {
-  height: 250px; /* Fixed height for scroll effect */
-  overflow: hidden;
-  position: relative;
-}
-
-.reviews-scroll {
-  display: flex;
-  flex-direction: column;
-  animation: scrollUp 10s linear infinite;
-}
-
-.reviews-scroll:hover {
-  animation-play-state: paused; /* Hover par ruk jayega */
-}
-
-.review {
-  margin: 10px 0;
-}
-
-.review img {
-  max-width:100%;
-  height:auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
-
-/* Infinite vertical scroll animation */
-@keyframes scrollUp {
-  0%   { transform: translateY(0); }
-  100% { transform: translateY(-50%); }
-}
-</style>
-
-
-<!-- ===================== CONTACT ===================== -->
-<section id="contact">
-  <h2 class="section">Contact Us</h2>
-  <div class="card contact-card">
-    <form id="contactForm" action="https://formspree.io/f/myzdlpbn" method="POST">
-      <div class="grid two-columns">
-        <div>
-          <label for="name">Name</label>
-          <input id="name" name="name" type="text" required placeholder="Your Name">
+  <!-- ── ABOUT ── -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid fade-in">
+        <div class="about-story">
+          <span class="section-label">Our Story</span>
+          <h2 class="section-title" style="margin-bottom:24px;">Born in a Himachali kitchen</h2>
+          <blockquote>"Every jar carries the taste of our mountains, the patience of slow cooking, and the warmth of home."</blockquote>
+          <p>Shimla Spice was born in our family kitchen, tucked away in the hills of Himachal. What began as small batches of pickles for loved ones soon turned into jars of stories worth sharing. Each recipe carries the taste of our traditions — for us, it's not just about pickles, it's about bottling memories. 💛</p>
         </div>
-        <div>
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" required placeholder="you@example.com">
+        <div class="about-stats">
+          <div class="stat-card fade-in">
+            <div class="stat-icon">🏔️</div>
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Authentic Recipes</div>
+          </div>
+          <div class="stat-card fade-in">
+            <div class="stat-icon">🌿</div>
+            <div class="stat-number">0</div>
+            <div class="stat-label">Artificial Preservatives</div>
+          </div>
+          <div class="stat-card fade-in">
+            <div class="stat-icon">🫙</div>
+            <div class="stat-number">12+</div>
+            <div class="stat-label">Pickle Varieties</div>
+          </div>
+          <div class="stat-card fade-in">
+            <div class="stat-icon">⭐</div>
+            <div class="stat-number">500+</div>
+            <div class="stat-label">Happy Customers</div>
+          </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <label for="message">Message</label>
-      <textarea id="message" name="message" rows="5" placeholder="Tell us what you need…"></textarea>
+  <!-- ── SLIDESHOW ── -->
+  <section class="slideshow-section" id="glimpse" style="padding: 0; margin: 0;">
+    <div class="container" style="padding-top: 80px; padding-bottom: 80px;">
+      <div class="section-header fade-in">
+        <span class="section-label" style="color: var(--turmeric);">A Glimpse</span>
+        <h2 class="section-title" style="color: white;">A Taste of Culture, A Glimpse of Home</h2>
+      </div>
+      <div class="slideshow-wrapper fade-in">
+        <div class="slide active" style="background-image: url('assets/Glimps/Glipmse1.jpg');"></div>
+        <div class="slide" style="background-image: url('assets/Glimps/Glipmse2.jpg');"></div>
+        <div class="slide" style="background-image: url('assets/Glimps/Glipmse3.jpg');"></div>
+        <div class="slide" style="background-image: url('assets/Glimps/Glipmse4.jpg');"></div>
+        <div class="slide" style="background-image: url('assets/Glimps/Glipmse5.jpg');"></div>
+        <div class="slide" style="background-image: url('assets/Glimps/Glipmse8.jpg');"></div>
+        <div class="slide" style="background-image: url('assets/Glimps/Glipmse9.jpg');"></div>
+        <div class="slide" style="background-image: url('assets/Glimps/Glipmse10.jpg');"></div>
+        <div class="slide" style="background-image: url('assets/Glimps/Glipmse12.jpg');"></div>
+        <div class="slide" style="background-image: url('assets/Glimps/Glipmse13.jpg');"></div>
+        <div class="slide" style="background-image: url('assets/Glimps/Glipmse14.jpg');"></div>
+        <div class="slide" style="background-image: url('assets/Glimps/Glipmse15.jpg');"></div>
+        <div class="slide" style="background-image: url('assets/Glimps/Glipmse16.jpg');"></div>
+        <div class="slide" style="background-image: url('assets/Glimps/Glipmse17.jpg');"></div>
+        <div class="slideshow-overlay"></div>
+        <div class="slideshow-caption">
+          <div class="slide-counter" id="slideCounter">01 / 14</div>
+          <div class="slide-title">Hills of Himachal Pradesh</div>
+        </div>
+        <button class="slide-nav slide-prev" id="slidePrev">&#8592;</button>
+        <button class="slide-nav slide-next" id="slideNext">&#8594;</button>
+        <div class="slide-dots" id="slideDots"></div>
+      </div>
+    </div>
+  </section>
 
-      <button class="btn primary" type="submit">Send</button>
-      <!-- Success message -->
-      <p id="formMessage" style="margin-top:10px;color:green;"></p>
+  <!-- ── PRODUCTS ── -->
+  <section id="products">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Our Range</span>
+        <h2 class="section-title">Bestselling Pickles</h2>
+        <p class="section-sub">Each variety is made with locally sourced fresh ingredients, traditional recipes, and lots of love.</p>
+      </div>
+      <div class="products-grid">
+        <article class="product-card fade-in">
+          <div class="product-img"><img src="assets/Himachali Chukh.png" alt="Himachali Chukh" /></div>
+          <div class="product-body">
+            <h3 class="product-name">Himachali Chukh</h3>
+            <a class="btn-buy" href="https://www.amazon.in/dp/B0DS9J21ZF" target="_blank">Buy on Amazon 🛒</a>
+          </div>
+        </article>
+        <article class="product-card fade-in">
+          <div class="product-img"><img src="assets/Mango Pickle.png" alt="Mango Pickle" /></div>
+          <div class="product-body">
+            <h3 class="product-name">Mango Pickle</h3>
+            <a class="btn-buy" href="https://www.amazon.in/dp/B0DTPB263N" target="_blank">Buy on Amazon 🛒</a>
+          </div>
+        </article>
+        <article class="product-card fade-in">
+          <div class="product-img"><img src="assets/Amla Pickle.png" alt="Amla Pickle" /></div>
+          <div class="product-body">
+            <h3 class="product-name">Amla Pickle</h3>
+            <a class="btn-buy" href="https://www.amazon.in/dp/B0FGHNJG7M" target="_blank">Buy on Amazon 🛒</a>
+          </div>
+        </article>
+        <article class="product-card fade-in">
+          <div class="product-img"><img src="assets/Green Chilly.png" alt="Green Chilly" /></div>
+          <div class="product-body">
+            <h3 class="product-name">Green Chilly</h3>
+            <a class="btn-buy" href="https://www.amazon.in/dp/B0DTQBGQ2X" target="_blank">Buy on Amazon 🛒</a>
+          </div>
+        </article>
+        <article class="product-card fade-in">
+          <div class="product-img"><img src="assets/Green Chilly & Ginger.png" alt="Green Chilly & Ginger" /></div>
+          <div class="product-body">
+            <h3 class="product-name">Green Chilly & Ginger</h3>
+            <a class="btn-buy" href="https://www.amazon.in/stores/page/B697823D-DD8A-4C5C-95BE-07A9F9FEC149" target="_blank">Buy on Amazon 🛒</a>
+          </div>
+        </article>
+        <article class="product-card fade-in">
+          <div class="product-img"><img src="assets/Lemon Pickle.png" alt="Lemon Pickle" /></div>
+          <div class="product-body">
+            <h3 class="product-name">Lemon Pickle</h3>
+            <a class="btn-buy" href="https://www.amazon.in/stores/page/B697823D-DD8A-4C5C-95BE-07A9F9FEC149" target="_blank">Buy on Amazon 🛒</a>
+          </div>
+        </article>
+        <article class="product-card fade-in">
+          <div class="product-img"><img src="assets/Mountain Lemon (Gagal).png" alt="Mountain Lemon Gagal" /></div>
+          <div class="product-body">
+            <h3 class="product-name">Mountain Lemon (Gagal)</h3>
+            <a class="btn-buy" href="https://www.amazon.in/dp/B0DVCFW488" target="_blank">Buy on Amazon 🛒</a>
+          </div>
+        </article>
+        <article class="product-card fade-in">
+          <div class="product-img"><img src="assets/Kachnar Pickle.png" alt="Kachnar Pickle" /></div>
+          <div class="product-body">
+            <h3 class="product-name">Kachnar Pickle</h3>
+            <a class="btn-buy" href="https://www.amazon.in/dp/B0FGHP7W38" target="_blank">Buy on Amazon 🛒</a>
+          </div>
+        </article>
+        <article class="product-card fade-in">
+          <div class="product-img"><img src="assets/Bharwa Lal Mirch.png" alt="Bharwa Lal Mirch" /></div>
+          <div class="product-body">
+            <h3 class="product-name">Bharwa Lal Mirch</h3>
+            <a class="btn-buy" href="https://www.amazon.in/dp/B0DZ5ZMWVQ" target="_blank">Buy on Amazon 🛒</a>
+          </div>
+        </article>
+        <article class="product-card fade-in">
+          <div class="product-img"><img src="assets/Bharwa Hari Mirch.png" alt="Bharwa Hari Mirch" /></div>
+          <div class="product-body">
+            <h3 class="product-name">Bharwa Hari Mirch</h3>
+            <a class="btn-buy" href="https://www.amazon.in/dp/B0DZ5Q9HRW" target="_blank">Buy on Amazon 🛒</a>
+          </div>
+        </article>
+        <article class="product-card fade-in">
+          <span class="coming-soon-badge">Coming Soon</span>
+          <div class="product-img"><img src="assets/Himachali Chukh.png" alt="Garlic Pickle" /></div>
+          <div class="product-body">
+            <h3 class="product-name">Garlic Pickle</h3>
+            <a class="btn-buy btn-buy-ghost" href="https://www.amazon.in/stores/page/B697823D-DD8A-4C5C-95BE-07A9F9FEC149" target="_blank">Notify Me</a>
+          </div>
+        </article>
+        <article class="product-card fade-in">
+          <span class="coming-soon-badge">Coming Soon</span>
+          <div class="product-img"><img src="assets/Himachali Chukh.png" alt="Mix Vegetable Pickle" /></div>
+          <div class="product-body">
+            <h3 class="product-name">Mix Vegetable Pickle</h3>
+            <a class="btn-buy btn-buy-ghost" href="https://www.amazon.in/stores/page/B697823D-DD8A-4C5C-95BE-07A9F9FEC149" target="_blank">Notify Me</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
-      <p class="muted">Or email: <a href="mailto:hello.shimlaspice@gmail.com">hello.shimlaspice@gmail.com</a></p>
-    </form>
+  <!-- ── BENEFITS ── -->
+  <section id="benefits" style="padding: 80px 0;">
+    <div class="benefits-section fade-in">
+      <span class="section-label">Why Pickles?</span>
+      <h2 class="section-title" style="color:white;">Why do we need Pickles?</h2>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <span class="benefit-emoji">🦠</span>
+          <h3>Rich in Probiotics</h3>
+          <p>Naturally fermented pickles contain natural probiotics that promote gut health and digestion.</p>
+        </div>
+        <div class="benefit-card">
+          <span class="benefit-emoji">🛡️</span>
+          <h3>Boosts Immunity</h3>
+          <p>Spices, garlic, and ginger strengthen the body's defense system with powerful antioxidants.</p>
+        </div>
+        <div class="benefit-card">
+          <span class="benefit-emoji">✨</span>
+          <h3>Packed with Antioxidants</h3>
+          <p>Vegetables and spices fight free radicals, keeping you healthy and youthful longer.</p>
+        </div>
+        <div class="benefit-card">
+          <span class="benefit-emoji">🍽️</span>
+          <h3>Enhances Appetite</h3>
+          <p>Tangy-sour taste stimulates taste buds and naturally improves your appetite.</p>
+        </div>
+        <div class="benefit-card">
+          <span class="benefit-emoji">❤️</span>
+          <h3>Good for Heart</h3>
+          <p>Ingredients like garlic and mustard seeds actively support long-term heart health.</p>
+        </div>
+        <div class="benefit-card">
+          <span class="benefit-emoji">🌱</span>
+          <h3>Preserves Nutrients</h3>
+          <p>Seasonal veggies retain their vitamins and minerals for longer in homemade pickles.</p>
+        </div>
+        <div class="benefit-card">
+          <span class="benefit-emoji">💧</span>
+          <h3>Aids in Hydration</h3>
+          <p>Salt and electrolytes help maintain hydration — especially important in summer months.</p>
+        </div>
+        <div class="benefit-card">
+          <span class="benefit-emoji">😋</span>
+          <h3>Mood Booster</h3>
+          <p>That burst of tangy flavor uplifts mood and adds real joy to every single meal.</p>
+        </div>
+        <div class="benefit-card">
+          <span class="benefit-emoji">🏠</span>
+          <h3>Pure & Clean</h3>
+          <p>Made in small batches — free from artificial colors, chemicals and harmful preservatives.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── REVIEWS ── -->
+  <section id="reviews">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Social Proof</span>
+        <h2 class="section-title">What our customers say</h2>
+        <p class="section-sub">Real reviews from real customers who fell in love with our pickles.</p>
+      </div>
+      <div class="reviews-wrapper fade-in">
+        <div class="reviews-scroll">
+          <div class="review"><img src="assets/reviews/Review1.png" alt="Review 1"></div>
+          <div class="review"><img src="assets/reviews/Review2.png" alt="Review 2"></div>
+          <div class="review"><img src="assets/reviews/Review3.png" alt="Review 3"></div>
+          <div class="review"><img src="assets/reviews/Review4.png" alt="Review 4"></div>
+          <div class="review"><img src="assets/reviews/Review5.png" alt="Review 5"></div>
+          <div class="review"><img src="assets/reviews/Review6.png" alt="Review 6"></div>
+          <div class="review"><img src="assets/reviews/Review7.png" alt="Review 7"></div>
+          <div class="review"><img src="assets/reviews/Review8.png" alt="Review 8"></div>
+          <div class="review"><img src="assets/reviews/Review9.png" alt="Review 9"></div>
+          <div class="review"><img src="assets/reviews/Review10.png" alt="Review 10"></div>
+          <div class="review"><img src="assets/reviews/Review11.png" alt="Review 11"></div>
+          <div class="review"><img src="assets/reviews/Review12.png" alt="Review 12"></div>
+          <!-- Duplicates for infinite scroll -->
+          <div class="review"><img src="assets/reviews/Review1.png" alt="Review 1"></div>
+          <div class="review"><img src="assets/reviews/Review2.png" alt="Review 2"></div>
+          <div class="review"><img src="assets/reviews/Review3.png" alt="Review 3"></div>
+          <div class="review"><img src="assets/reviews/Review4.png" alt="Review 4"></div>
+          <div class="review"><img src="assets/reviews/Review5.png" alt="Review 5"></div>
+          <div class="review"><img src="assets/reviews/Review6.png" alt="Review 6"></div>
+          <div class="review"><img src="assets/reviews/Review7.png" alt="Review 7"></div>
+          <div class="review"><img src="assets/reviews/Review8.png" alt="Review 8"></div>
+          <div class="review"><img src="assets/reviews/Review9.png" alt="Review 9"></div>
+          <div class="review"><img src="assets/reviews/Review10.png" alt="Review 10"></div>
+          <div class="review"><img src="assets/reviews/Review11.png" alt="Review 11"></div>
+          <div class="review"><img src="assets/reviews/Review12.png" alt="Review 12"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Get in Touch</span>
+        <h2 class="section-title">We'd love to hear from you</h2>
+      </div>
+      <div class="contact-grid fade-in">
+        <div class="contact-info">
+          <h3>Let's talk pickles! 🫙</h3>
+          <p>Have a question about our products? Want to place a bulk order or just share your love for our pickles? We're always happy to hear from you.</p>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">✉️</div>
+            <div class="contact-detail-text">
+              <strong>Email Us</strong>
+              <span>hello.shimlaspice@gmail.com</span>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">📸</div>
+            <div class="contact-detail-text">
+              <strong>Instagram</strong>
+              <span>@shimla_spice</span>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">🛒</div>
+            <div class="contact-detail-text">
+              <strong>Shop Online</strong>
+              <span>Available on Amazon India</span>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form-wrap">
+          <form id="contactForm" action="https://formspree.io/f/myzdlpbn" method="POST">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Your Name</label>
+                <input id="name" name="name" type="text" required placeholder="Ravi Kumar" />
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input id="email" name="email" type="email" required placeholder="you@example.com" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell us what's on your mind…"></textarea>
+            </div>
+            <a class="btn-primary" id="submitBtn" style="cursor:pointer; border:none; font-size:15px; width:100%; justify-content:center;" onclick="submitForm(event)">Send Message ✉️</a>
+            <p id="formMessage"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <strong>Shimla Spice</strong>
+        <p>Born in the hills of Himachal Pradesh. Crafted with love, tradition, and the finest ingredients. One jar at a time. 🏔️</p>
+        <p style="margin-top:16px; font-style:italic; color: rgba(255,255,255,0.35); font-size:13px;">Jai Maa Kamaksha — Raksha karna, Kalyan karna. 🙏</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#benefits">Why Pickles</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Reach Us</h4>
+        <ul>
+          <li><a href="mailto:hello.shimlaspice@gmail.com">hello.shimlaspice@gmail.com</a></li>
+          <li><a href="https://www.instagram.com/shimla_spice/" target="_blank">@shimla_spice on Instagram</a></li>
+          <li><a href="https://www.amazon.in/stores/page/B697823D-DD8A-4C5C-95BE-07A9F9FEC149" target="_blank">Shop on Amazon India</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Shimla Spice. All rights reserved.</span>
+      <span class="footer-blessing">Homemade Goodness in Every Jar 🫙</span>
+    </div>
   </div>
-</section>
-
-<style>
-  .contact-card {
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  }
-  .two-columns {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-  }
-  label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 500;
-  }
-  input, textarea {
-    width: 100%;
-    padding: 8px 10px;
-    margin-bottom: 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 14px;
-  }
-  button.btn.primary {
-    background: #ff5722;
-    color: white;
-    padding: 10px 18px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-  button.btn.primary:hover {
-    background: #e64a19;
-  }
-  .muted a {
-    color: #555;
-    text-decoration: underline;
-  }
-</style>
+</footer>
 
 <script>
-const form = document.getElementById('contactForm');
-const message = document.getElementById('formMessage');
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-form.addEventListener('submit', function(e) {
-  e.preventDefault();
-  const formData = new FormData(form);
+  // Mobile Nav
+  function toggleMobileNav() {
+    document.getElementById('mobileNav').classList.toggle('open');
+  }
+  function closeMobileNav(e) {
+    if (e.target === document.getElementById('mobileNav')) toggleMobileNav();
+  }
 
-  fetch(form.action, {
-    method: 'POST',
-    body: formData,
-    headers: { 'Accept': 'application/json' }
-  })
-  .then(response => response.json())
-  .then(data => {
-    if (data.ok) {
-      message.textContent = "Thanks! Your message has been sent.";
-      form.reset();
-      setTimeout(() => {
-        window.location.href = 'https://www.shimlaspice.in/';
-      }, 5000);
-    } else if (data.errors) {
-      message.textContent = data.errors.map(e => e.message).join(", ");
-    } else {
-      message.textContent = "Oops! There was a problem.";
+  // Slideshow
+  const slides = document.querySelectorAll('.our-story-slideshow .slide, .slideshow-wrapper .slide');
+  const dotsContainer = document.getElementById('slideDots');
+  const counterEl = document.getElementById('slideCounter');
+  let current = 0;
+  const total = slides.length;
+
+  if (dotsContainer && total > 0) {
+    for (let i = 0; i < total; i++) {
+      const d = document.createElement('div');
+      d.className = 'dot' + (i === 0 ? ' active' : '');
+      d.addEventListener('click', () => goTo(i));
+      dotsContainer.appendChild(d);
     }
-  })
-  .catch(() => {
-    message.textContent = "Oops! There was a problem.";
-  });
-});
+  }
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    if (dotsContainer) dotsContainer.children[current].classList.remove('active');
+    current = (n + total) % total;
+    slides[current].classList.add('active');
+    if (dotsContainer) dotsContainer.children[current].classList.add('active');
+    if (counterEl) counterEl.textContent = String(current + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+  }
+
+  const prevBtn = document.getElementById('slidePrev');
+  const nextBtn = document.getElementById('slideNext');
+  if (prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1));
+  if (nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1));
+  setInterval(() => goTo(current + 1), 5000);
+
+  // Contact Form
+  function submitForm(e) {
+    e.preventDefault();
+    const form = document.getElementById('contactForm');
+    const msg = document.getElementById('formMessage');
+    const formData = new FormData(form);
+    msg.textContent = 'Sending…';
+    msg.style.color = '#9C7E54';
+    fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(r => r.json())
+    .then(data => {
+      if (data.ok) {
+        msg.textContent = '✅ Thanks! Your message has been sent.';
+        msg.style.color = '#2D6A4F';
+        form.reset();
+      } else {
+        msg.textContent = '❌ Oops! Something went wrong.';
+        msg.style.color = '#E8640A';
+      }
+    })
+    .catch(() => {
+      msg.textContent = '❌ Oops! Something went wrong.';
+      msg.style.color = '#E8640A';
+    });
+  }
+
+  // Fade in on scroll
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+  fadeEls.forEach(el => observer.observe(el));
 </script>
-
-  <!-- ===================== FOOTER ===================== -->
-  <footer>
-    <div class="container foot">
-      <div>
-        <strong>Shimla Spice</strong>
-        <p class="muted" style="margin:8px 0 0">Jai Maa Kamaksha — Raksha karna, Kalyan karna. 🙏</p>
-        <p class="copyright">© <span id="year"></span> Shimla Spice. All rights reserved.</p>
-      </div>
-      <div>
-        <strong>Quick Links</strong>
-        <ul style="list-style:none;padding:0;margin:8px 0 0;line-height:2">
-          <li><a href="#about">About</a></li>
-          <li><a href="#products">Products</a></li>
-          <li><a href="#benefits">Benefits</a></li>
-        </ul>
-      </div>
-      <div>
-        <strong>Reach Us</strong>
-        <ul style="list-style:none;padding:0;margin:8px 0 0;line-height:2">
-          <li>Email: <a href="mailto:hello@shimlaspice.in">hello@shimlaspice.in</a></li>
-          <li>Instagram: <a href="https://www.instagram.com/shimla_spice/" target="_blank" rel="noopener noreferrer">@shimla_spice</li>
-        </ul>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-
-// ===================== UTIL & STATE =====================
-    const $ = sel => document.querySelector(sel);
-    const $$ = sel => [...document.querySelectorAll(sel)];
-
-
-// Year
-    $('#year').textContent = new Date().getFullYear();
-
-
-// Mobile menu toggle (simple)
-    function toggleMenu(){
-      const nav = document.querySelector('.menu');
-      const visible = getComputedStyle(nav).display !== 'none';
-      window.addEventListener('resize', ()=> {
-  	if(window.innerWidth > 640) nav.style.display = 'flex';
-	});
-
-
-
-// ===================== CAROUSEL =====================
-    const slides = $('#slides');
-    const slideCount = slides.children.length;
-    let i = 0;
-    const dots = $('#dots');
-    for(let d=0; d<slideCount; d++){
-      const dot = document.createElement('div');
-      dot.className = 'dot' + (d===0?' active':'');
-      dot.addEventListener('click',()=>goTo(d));
-      dots.appendChild(dot);
-    }
-    function goTo(n){
-      i = (n+slideCount)%slideCount;
-      slides.style.transform = `translateX(-${i*100}%)`;
-      $$('#dots .dot').forEach((el,idx)=> el.classList.toggle('active', idx===i));
-    }
-    setInterval(()=>goTo(i+1), 4000);
-
-
-// ===================== Slideshow =====================
-let currentSlide = 0;
-const slides = document.querySelectorAll('.our-story-slideshow .slide');
-const totalSlides = slides.length;
-
-function showSlide(index) {
-  slides.forEach((slide, i) => {
-    slide.classList.remove('active');
-    if(i === index) slide.classList.add('active');
-  });
-}
-
-document.querySelector('.our-story-slideshow .next').addEventListener('click', () => {
-  currentSlide = (currentSlide + 1) % totalSlides;
-  showSlide(currentSlide);
-});
-
-document.querySelector('.our-story-slideshow .prev').addEventListener('click', () => {
-  currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-  showSlide(currentSlide);
-});
-
-// Auto-slide every 5 seconds
-setInterval(() => {
-  currentSlide = (currentSlide + 1) % totalSlides;
-  showSlide(currentSlide);
-}, 5000);
-
-// Optional: subtle parallax effect on scroll
-window.addEventListener('scroll', () => {
-  const slideshow = document.querySelector('.our-story-slideshow');
-  const offset = window.scrollY;
-  slideshow.querySelectorAll('.slide').forEach(slide => {
-    slide.style.transform = `translateY(${offset * 0.05}px) scale(${slide.classList.contains('active') ? 1 : 1.05})`;
-  });
-});
-
-
-
- </script>
-
- </body>
+</body>
 </html>
